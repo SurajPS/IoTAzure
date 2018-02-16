@@ -1,7 +1,7 @@
 $(document).ready(function () {
   var timeData = [],
     temperatureData = [],
-    Co2Data = [];
+    humidityData = [];
   var data = {
     labels: timeData,
     datasets: [
@@ -9,23 +9,23 @@ $(document).ready(function () {
         fill: false,
         label: 'Temperature',
         yAxisID: 'Temperature',
-        borderColor: "rgba(255, 204, 0, 1)",
-        pointBoarderColor: "rgba(255, 204, 0, 1)",
-        backgroundColor: "rgba(255, 204, 0, 0.4)",
-        pointHoverBackgroundColor: "rgba(255, 204, 0, 1)",
-        pointHoverBorderColor: "rgba(255, 204, 0, 1)",
+        borderColor: "rgba(255, 100, 0, 1)",
+        pointBoarderColor: "rgba(255, 100, 0, 1)",
+        backgroundColor: "rgba(255, 100, 0, 0.4)",
+        pointHoverBackgroundColor: "rgba(255, 50, 0, 1)",
+        pointHoverBorderColor: "rgba(255, 50, 0, 1)",
         data: temperatureData
       },
       {
         fill: false,
-        label: 'Co2',
-        yAxisID: 'Co2',
-        borderColor: "rgba(24, 120, 240, 1)",
-        pointBoarderColor: "rgba(24, 120, 240, 1)",
-        backgroundColor: "rgba(24, 120, 240, 0.4)",
-        pointHoverBackgroundColor: "rgba(24, 120, 240, 1)",
-        pointHoverBorderColor: "rgba(24, 120, 240, 1)",
-        data: Co2Data
+        label: 'Humidity',
+        yAxisID: 'Humidity',
+        borderColor: "rgba(0, 120, 240, 1)",
+        pointBoarderColor: "rgba(0, 120, 240, 1)",
+        backgroundColor: "rgba(0, 120, 240, 0.4)",
+        pointHoverBackgroundColor: "rgba(0, 120, 240, 1)",
+        pointHoverBorderColor: "rgba(0, 120, 240, 1)",
+        data: humidityData
       }
     ]
   }
@@ -33,7 +33,7 @@ $(document).ready(function () {
   var basicOption = {
     title: {
       display: true,
-      text: 'Temperature & CO2 Real-time Data',
+      text: 'Temperature & Humidity Real-time Data',
       fontSize: 36
     },
     scales: {
@@ -46,10 +46,10 @@ $(document).ready(function () {
         },
         position: 'left',
       }, {
-          id: 'Co2',
+          id: 'Humidity',
           type: 'linear',
           scaleLabel: {
-            labelString: 'Co2(%)',
+            labelString: 'Humidity(%)',
             display: true
           },
           position: 'right'
@@ -87,11 +87,11 @@ $(document).ready(function () {
         temperatureData.shift();
       }
 
-      if (obj.co2) {
-          Co2Data.push(obj.co2);
+      if (obj.humidity) {
+          humidityData.push(obj.humidity);
       }
-      if (Co2Data.length > maxLen) {
-        Co2Data.shift();
+      if (humidityData.length > maxLen) {
+          humidityData.shift();
       }
 
       myLineChart.update();
