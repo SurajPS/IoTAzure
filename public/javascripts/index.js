@@ -5,36 +5,30 @@ $(document).ready(function () {
   tempex = [],
   humidex = [];
   var data = {
-    labels: timeData,
-    datasets: [
-      {
-        fill: false,
-        label: 'Temperature',
-        yAxisID: 'Temperature',
-        borderColor: "rgba(255, 200, 0, 1)",
-        pointBoarderColor: "rgba(255, 222, 0, 1)",
-        backgroundColor: "rgba(255, 222, 0, 0.4)",
-        pointHoverBackgroundColor: "rgba(255, 200, 0, 1)",
-        pointHoverBorderColor: "rgba(255, 200, 0, 1)",
-        data: temperatureData
-      },
-      {
-        fill: false,
-        label: 'Humidity',
-        yAxisID: 'Humidity',
-        borderColor: "rgba(0, 241, 240, 1)",
-        pointBoarderColor: "rgba(0, 241, 240, 1)",
-        backgroundColor: "rgba(0, 210, 241, 0.4)",
-        pointHoverBackgroundColor: "rgba(0, 210, 240, 1)",
-        pointHoverBorderColor: "rgba(0, 210, 240, 1)",
-        data: humidityData
-      }
-    ]
-  }
-
-  var dataex = {
+      labels: timeData,
       datasets: [
           {
+              fill: false,
+              label: 'Temperature',
+              yAxisID: 'Temperature',
+              borderColor: "rgba(255, 200, 0, 1)",
+              pointBoarderColor: "rgba(255, 222, 0, 1)",
+              backgroundColor: "rgba(255, 222, 0, 0.4)",
+              pointHoverBackgroundColor: "rgba(255, 200, 0, 1)",
+              pointHoverBorderColor: "rgba(255, 200, 0, 1)",
+              data: temperatureData
+          },
+          {
+              fill: false,
+              label: 'Humidity',
+              yAxisID: 'Humidity',
+              borderColor: "rgba(0, 241, 240, 1)",
+              pointBoarderColor: "rgba(0, 241, 240, 1)",
+              backgroundColor: "rgba(0, 210, 241, 0.4)",
+              pointHoverBackgroundColor: "rgba(0, 210, 240, 1)",
+              pointHoverBorderColor: "rgba(0, 210, 240, 1)",
+              data: humidityData
+          }, {
               fill: false,
               label: '',
               yAxisID: '',
@@ -55,9 +49,10 @@ $(document).ready(function () {
               pointHoverBackgroundColor: "rgba(0, 0, 240, 1)",
               pointHoverBorderColor: "rgba(0, 0, 240, 1)",
               data: humidex
-          }]
-  };
-
+          }
+    ]
+  }
+   
     //The chart Creation 
 
   var basicOption = {
@@ -96,12 +91,6 @@ $(document).ready(function () {
     options: basicOption
   });
 
-  var myexceedlimit = new Chart(ctx, {
-      type: 'line',
-      data: dataex,
-      options: basicOption
-
-  });
 
   var ws = new WebSocket('wss://' + location.host);
   ws.onopen = function () {
