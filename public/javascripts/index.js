@@ -11,11 +11,11 @@ $(document).ready(function () {
         fill: false,
         label: 'Temperature',
         yAxisID: 'Temperature',
-        borderColor: "rgba(255, 212, 0, 1)",
-        pointBoarderColor: "rgba(255, 212, 0, 1)",
-        backgroundColor: "rgba(255, 212, 0, 0.4)",
-        pointHoverBackgroundColor: "rgba(255, 111, 0, 1)",
-        pointHoverBorderColor: "rgba(255, 111, 0, 1)",
+        borderColor: "rgba(255, 200, 0, 1)",
+        pointBoarderColor: "rgba(255, 222, 0, 1)",
+        backgroundColor: "rgba(255, 222, 0, 0.4)",
+        pointHoverBackgroundColor: "rgba(255, 200, 0, 1)",
+        pointHoverBorderColor: "rgba(255, 200, 0, 1)",
         data: temperatureData
       },
       {
@@ -24,35 +24,39 @@ $(document).ready(function () {
         yAxisID: 'Humidity',
         borderColor: "rgba(0, 241, 240, 1)",
         pointBoarderColor: "rgba(0, 241, 240, 1)",
-        backgroundColor: "rgba(0, 120, 241, 0.4)",
-        pointHoverBackgroundColor: "rgba(0, 120, 240, 1)",
-        pointHoverBorderColor: "rgba(0, 120, 240, 1)",
+        backgroundColor: "rgba(0, 210, 241, 0.4)",
+        pointHoverBackgroundColor: "rgba(0, 210, 240, 1)",
+        pointHoverBorderColor: "rgba(0, 210, 240, 1)",
         data: humidityData
-      },
-      {
-          fill: false,
-          label: 'Temperature',
-          yAxisID: 'Temperature',
-          borderColor: "rgba(255, 0, 0, 1)",
-          pointBoarderColor: "rgba(255, 0, 0, 1)",
-          backgroundColor: "rgba(255, 0, 0, 0.4)",
-          pointHoverBackgroundColor: "rgba(255, 0, 0, 1)",
-          pointHoverBorderColor: "rgba(255, 0, 0, 1)",
-          data: tempex
-      },
-      {
-          fill: false,
-          label: 'Humidity',
-          yAxisID: 'Humidity',
-          borderColor: "rgba(0, 0, 240, 1)",
-          pointBoarderColor: "rgba(0, 0, 240, 1)",
-          backgroundColor: "rgba(0, 0, 241, 0.4)",
-          pointHoverBackgroundColor: "rgba(0, 0, 240, 1)",
-          pointHoverBorderColor: "rgba(0, 0, 240, 1)",
-          data: humidex
       }
     ]
   }
+
+  var dataex = {
+      datasets: [
+          {
+              fill: false,
+              label: '',
+              yAxisID: '',
+              borderColor: "rgba(255, 0, 0, 1)",
+              pointBoarderColor: "rgba(255, 0, 0, 1)",
+              backgroundColor: "rgba(255, 0, 0, 0.2)",
+              pointHoverBackgroundColor: "rgba(255, 0, 0, 1)",
+              pointHoverBorderColor: "rgba(255, 0, 0, 1)",
+              data: tempex
+          },
+          {
+              fill: false,
+              label: '',
+              yAxisID: '',
+              borderColor: "rgba(0, 0, 240, 1)",
+              pointBoarderColor: "rgba(0, 0, 240, 1)",
+              backgroundColor: "rgba(0, 0, 241, 0.2)",
+              pointHoverBackgroundColor: "rgba(0, 0, 240, 1)",
+              pointHoverBorderColor: "rgba(0, 0, 240, 1)",
+              data: humidex
+          }]
+  };
 
     //The chart Creation 
 
@@ -92,6 +96,13 @@ $(document).ready(function () {
     options: basicOption
   });
 
+  var myexceedlimit = new Chart(ctx, {
+      type: 'line',
+      data: dataex;
+      options: basicOption;
+
+  });
+
   var ws = new WebSocket('wss://' + location.host);
   ws.onopen = function () {
     console.log('Successfully connect WebSocket');
@@ -106,10 +117,8 @@ $(document).ready(function () {
       timeData.push(obj.time);
       temperatureData.push(obj.temperature);
       console.log(obj.temperature);
-      /*for (int i= 0; i < temperatureData.length) {
-          if (temperatureData[i] > 30)
-              tempex.push(temperatureData[i]);
-      }*/
+      if (obj.temperature > 30)
+          tempex.push(obj.temperature);
       // only keep no more than 50 points in the line chart
       const maxLen = 50;
       var len = timeData.length;
@@ -121,11 +130,8 @@ $(document).ready(function () {
       if (obj.humidity) {
           humidityData.push(obj.humidity);
           console.log(obj.humidity);
-
-          /*for (int i= 0; i < temperatureData.length) {
-              if (temperatureData[i] > 30)
-                  tempex.push(temperatureData[i]);
-          }*/
+          if (obj.humidity > 30)
+              humidex.push(obj.humidity);
       }
       if (humidityData.length > maxLen) {
           humidityData.shift();
