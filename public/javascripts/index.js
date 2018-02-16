@@ -99,7 +99,7 @@ $(document).ready(function () {
   var myexceedlimit = new Chart(ctx, {
       type: 'line',
       data: dataex,
-      options: basicOption;
+      options: basicOption
 
   });
 
