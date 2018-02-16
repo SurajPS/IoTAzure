@@ -11,44 +11,23 @@ $(document).ready(function () {
               fill: false,
               label: 'Temperature',
               yAxisID: 'Temperature',
-              borderColor: "rgba(255, 200, 0, 1)",
-              pointBoarderColor: "rgba(255, 222, 0, 1)",
-              backgroundColor: "rgba(255, 222, 0, 0.4)",
-              pointHoverBackgroundColor: "rgba(255, 200, 0, 1)",
-              pointHoverBorderColor: "rgba(255, 200, 0, 1)",
-              data: temperatureData
+              borderColor: ["rgba(255, 200, 0, 1)", "rgba(255, 0, 0, 1)"],
+              pointBoarderColor: ["rgba(255, 200, 0, 1)", "rgba(255, 0, 0, 1)"],
+              backgroundColor: ["rgba(255, 200, 0, 0.9)", "rgba(255, 0, 0, 1)"],
+              pointHoverBackgroundColor: ["rgba(255, 200, 0, 1)", "rgba(255, 0, 0, 1)"],
+              pointHoverBorderColor: ["rgba(255, 200, 0, 1)", "rgba(255, 0, 0, 1)"],
+              data: [temperatureData, tempex]
           },
           {
               fill: false,
               label: 'Humidity',
               yAxisID: 'Humidity',
-              borderColor: "rgba(0, 241, 240, 1)",
-              pointBoarderColor: "rgba(0, 241, 240, 1)",
-              backgroundColor: "rgba(0, 210, 241, 0.4)",
-              pointHoverBackgroundColor: "rgba(0, 210, 240, 1)",
-              pointHoverBorderColor: "rgba(0, 210, 240, 1)",
-              data: humidityData
-          }, {
-              fill: false,
-              label: '',
-              yAxisID: '',
-              borderColor: "rgba(255, 0, 0, 1)",
-              pointBoarderColor: "rgba(255, 0, 0, 1)",
-              backgroundColor: "rgba(255, 0, 0, 0.2)",
-              pointHoverBackgroundColor: "rgba(255, 0, 0, 1)",
-              pointHoverBorderColor: "rgba(255, 0, 0, 1)",
-              data: tempex
-          },
-          {
-              fill: false,
-              label: '',
-              yAxisID: '',
-              borderColor: "rgba(0, 0, 240, 1)",
-              pointBoarderColor: "rgba(0, 0, 240, 1)",
-              backgroundColor: "rgba(0, 0, 241, 0.2)",
-              pointHoverBackgroundColor: "rgba(0, 0, 240, 1)",
-              pointHoverBorderColor: "rgba(0, 0, 240, 1)",
-              data: humidex
+              borderColor: ["rgba(0, 220, 240, 1)", "rgba(0, 0, 240, 1)"],
+              pointBoarderColor: ["rgba(0, 241, 240, 1)", "rgba(0, 0, 240, 1)"],
+              backgroundColor: ["rgba(0, 241, 240, 0.9)", "rgba(0, 0, 240, 1)"],
+              pointHoverBackgroundColor: ["rgba(0, 241, 240, 1)", "rgba(0, 0, 240, 1)"],
+              pointHoverBorderColor: ["rgba(0, 241, 240, 1)", "rgba(0, 0, 240, 1)"],
+              data: [humidityData, humidex]
           }
     ]
   }
@@ -104,10 +83,12 @@ $(document).ready(function () {
         return;
       }
       timeData.push(obj.time);
-      temperatureData.push(obj.temperature);
+      //temperatureData.push(obj.temperature);
       console.log(obj.temperature);
       if (obj.temperature > 30)
           tempex.push(obj.temperature);
+      else
+          temperatureData.push(obj.temperature);
       // only keep no more than 50 points in the line chart
       const maxLen = 50;
       var len = timeData.length;
@@ -117,10 +98,12 @@ $(document).ready(function () {
       }
 
       if (obj.humidity) {
-          humidityData.push(obj.humidity);
+          //humidityData.push(obj.humidity);
           console.log(obj.humidity);
           if (obj.humidity > 30)
               humidex.push(obj.humidity);
+          else
+              humidityData.push(obj.humidity);
       }
       if (humidityData.length > maxLen) {
           humidityData.shift();
