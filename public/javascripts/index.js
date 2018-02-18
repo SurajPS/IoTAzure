@@ -128,6 +128,12 @@ $(document).ready(function () {
                   .y(function(d) { return y(temperatureData); });
                   
                  
+                  d3.tsv("data.tsv", function(d) {
+                         d.date = parseTime(timeData);
+                         d.temperatureData = +temperatureData;
+                         return d;
+                         }, function(error, data) {
+                         if (error) throw error;
                          
                          g.append("g")
                          .attr("transform", "translate(0,200px)")
