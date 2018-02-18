@@ -76,6 +76,10 @@ $(document).ready(function () {
         console.log('Successfully connect WebSocket');
     }
     ws.onmessage = function (message) {
+                  
+                  var v43= d3.select('#graphDiv').append('svg:svg').attr('width','200').attr('height','200').attr('fill','#777700');
+                  console.log(v43);
+                  
         console.log('receive message' + message.data);
         try {
             var obj = JSON.parse(message.data);
@@ -105,7 +109,7 @@ $(document).ready(function () {
                 humidityData.shift();
             }
                   
-                  d3.select('#graphDiv').append('svg:svg').attr('width','200').attr('height','200').attr('fill','#777700');
+
 
             myLineChart.update();
         } catch (err) {
