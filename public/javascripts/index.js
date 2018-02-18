@@ -109,7 +109,7 @@ $(document).ready(function () {
             }
                   d3.select('#linechart').remove();
                   var svg= d3.select('#graphDiv').append('svg:svg').attr('id', 'linechart')
-                  .attr('width',600)
+                  .attr('width',1600)
                   .attr('height','300');
             //.append('rect').attr('width','100%').attr('height','100%').attr('fill','#FEFEFE');
                   
@@ -118,7 +118,7 @@ $(document).ready(function () {
                   var parseTime = d3.timeParse("%y:%m:%d");
                   
                   var x = d3.scaleTime()
-                  .rangeRound([0, 200]);
+                  .rangeRound([0, 1500]);
                   
                   var y = d3.scaleLinear()
                   .rangeRound([200, 0]);
