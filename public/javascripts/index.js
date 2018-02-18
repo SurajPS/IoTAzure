@@ -91,6 +91,8 @@ $(document).ready(function () {
                   
                   if(obj.deviceID!=sensorname)
                   console.log("Unidentified Sensor");
+                  else
+                  console.log(sensorname);
             timeData.push(obj.time);
             temperatureData.push(obj.temperature);
             console.log(obj.temperature);
