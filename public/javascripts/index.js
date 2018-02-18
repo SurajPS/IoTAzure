@@ -85,9 +85,12 @@ $(document).ready(function () {
                   console.log('Sensor Name: '+sensorname);
         try {
             var obj = JSON.parse(message.data);
-            if (!obj.time || !obj.temperature) {
+            if (!obj.time || !obj.temperature ) {
                 return;
             }
+                  
+                  if(obj.deviceID!=sensorname)
+                  console.log("Unidentified Sensor");
             timeData.push(obj.time);
             temperatureData.push(obj.temperature);
             console.log(obj.temperature);
