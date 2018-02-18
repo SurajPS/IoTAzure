@@ -77,8 +77,7 @@ $(document).ready(function () {
     }
     ws.onmessage = function (message) {
                   
-                  var v43= d3.select('#graphDiv').append('svg:svg').attr('width','200').attr('height','200').append('rect').attr('width','100%').attr('height','100%').attr('fill','#006699');
-                  console.log(v43);
+
                   
         console.log('receive message' + message.data);
         try {
@@ -108,8 +107,55 @@ $(document).ready(function () {
             if (humidityData.length > maxLen) {
                 humidityData.shift();
             }
+                  d3.select('#linechart').remove();
+                  var v43= d3.select('#graphDiv').append('svg:svg').attr('id', 'linechart')
+                  .attr('width',600)
+                  .attr('height','300');
+            //.append('rect').attr('width','100%').attr('height','100%').attr('fill','#FEFEFE');
                   
+                  g = svg.append("g").attr("transform", "translate(180px,180px)");
+                  
+                  var parseTime = d3.timeParse("%y:%m:%d");
+                  
+                  var x = d3.scaleTime()
+                  .rangeRound([0, 200]);
+                  
+                  var y = d3.scaleLinear()
+                  .rangeRound([200, 0]);
+                  
+                  var line = d3.line()
+                  .x(function(d) { return x(timeData); })
+                  .y(function(d) { return y(temperatureData); });
+                  
+                 
+                         
+                         g.append("g")
+                         .attr("transform", "translate(0,200px)")
+                         .call(d3.axisBottom(x))
+                         .select(".domain")
+                         .remove();
+                         
+                         g.append("g")
+                         .call(d3.axisLeft(y))
+                         .append("text")
+                         .attr("fill", "#000")
+                         .attr("transform", "rotate(-90)")
+                         .attr("y", 6)
+                         .attr("dy", "0.71em")
+                         .attr("text-anchor", "end")
+                         .text("Temperature");
+                         
+                         g.append("path")
+                         .datum(data)
+                         .attr("fill", "none")
+                         .attr("stroke", "steelblue")
+                         .attr("stroke-linejoin", "round")
+                         .attr("stroke-linecap", "round")
+                         .attr("stroke-width", 1.5)
+                         .attr("d", line);
+                         });
 
+                  
 
             myLineChart.update();
         } catch (err) {
