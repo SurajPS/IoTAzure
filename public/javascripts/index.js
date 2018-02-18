@@ -104,6 +104,8 @@ $(document).ready(function () {
             if (humidityData.length > maxLen) {
                 humidityData.shift();
             }
+                  
+                  d3.select('#graphDiv').append('svg:svg').attr('width','200').attr('height','200').attr('fill','#777700');
 
             myLineChart.update();
         } catch (err) {
