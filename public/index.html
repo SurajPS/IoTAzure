@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    <Label> Sensor Name: </Label><input type="text" />
-    <button id="sensorchangebutton">Change Sensor</button>
+    <Label> Sensor Name: </Label><input type="text" id="sensorname"/>
+    <button id="sensorchangebutton" onclick="refreshsensor()">Change Sensor</button>
     <div id="graphdiv">
     <canvas id="myChart" width="400" height="150"></canvas>
         </div>

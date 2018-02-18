@@ -1,3 +1,5 @@
+var sensorname="";
+
 $(document).ready(function () {
     var timeData = [],
         temperatureData = [],
@@ -111,8 +113,9 @@ $(document).ready(function () {
                   var svg= d3.select('#graphDiv').append('svg:svg').attr('id', 'linechart')
                   .attr('width',1600)
                   .attr('height','300');
-            //.append('rect').attr('width','100%').attr('height','100%').attr('fill','#FEFEFE');
                   
+            //.append('rect').attr('width','100%').attr('height','100%').attr('fill','#FEFEFE');
+                  /*
                   g = svg.append("g").attr("transform", "translate(180px,180px)");
                   
                   var parseTime = d3.timeParse("%y:%m:%d");
@@ -160,7 +163,7 @@ $(document).ready(function () {
                          .attr("stroke-width", 1.5)
                          .attr("d", line);
                          });
-
+*/
                   
 
             myLineChart.update();
@@ -173,3 +176,11 @@ $(document).ready(function () {
 
 
 });
+
+
+function refreshsensor(){
+    var inputfield= document.getElementById('sensorname');
+    console.log(inputfield.text);
+    sensorname= inputfield.text;
+}
+
