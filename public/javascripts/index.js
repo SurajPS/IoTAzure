@@ -84,12 +84,12 @@ $(document).ready(function () {
         console.log('receive message' + message.data);
         try {
             var obj = JSON.parse(message.data);
-            if (!obj.time || !obj.temperature ) {
+            if (!obj.time || !obj.temperature ||(String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase())) {
                 return;
             }
                   
-                  if(obj.deviceId!=sensorname)
-                  console.log(String(obj.deviceId));
+                  if(String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase())
+                  console.log("Unknown Sensor. Received Sensor: "+String(obj.deviceId));
                   else
                   console.log(sensorname);
             timeData.push(obj.time);
