@@ -82,7 +82,6 @@ $(document).ready(function () {
 
                   
         console.log('receive message' + message.data);
-                  console.log('Sensor Name: '+sensorname);
         try {
             var obj = JSON.parse(message.data);
             if (!obj.time || !obj.temperature ) {
@@ -90,7 +89,7 @@ $(document).ready(function () {
             }
                   
                   if(obj.deviceID!=sensorname)
-                  console.log("Unidentified Sensor");
+                  console.log(obj.deviceID);
                   else
                   console.log(sensorname);
             timeData.push(obj.time);
