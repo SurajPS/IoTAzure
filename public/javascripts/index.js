@@ -77,7 +77,7 @@ $(document).ready(function () {
     }
     ws.onmessage = function (message) {
                   
-                  var v43= d3.select('#graphDiv').append('svg:svg').attr('width','200').attr('height','200').append('rect').attr('width','100%').attr('height','100%').attr('fill','pink');
+                  var v43= d3.select('#graphDiv').append('svg:svg').attr('width','200').attr('height','200').append('rect').attr('width','100%').attr('height','100%').attr('fill','#006699');
                   console.log(v43);
                   
         console.log('receive message' + message.data);
