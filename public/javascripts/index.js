@@ -108,7 +108,7 @@ $(document).ready(function () {
                 humidityData.shift();
             }
                   d3.select('#linechart').remove();
-                  var v43= d3.select('#graphDiv').append('svg:svg').attr('id', 'linechart')
+                  var vsvg43= d3.select('#graphDiv').append('svg:svg').attr('id', 'linechart')
                   .attr('width',600)
                   .attr('height','300');
             //.append('rect').attr('width','100%').attr('height','100%').attr('fill','#FEFEFE');
