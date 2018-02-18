@@ -82,6 +82,7 @@ $(document).ready(function () {
 
                   
         console.log('receive message' + message.data);
+                  console.log('Sensor Name: '+sensorname);
         try {
             var obj = JSON.parse(message.data);
             if (!obj.time || !obj.temperature) {
@@ -180,7 +181,7 @@ $(document).ready(function () {
 
 function refreshsensor(){
     var inputfield= document.getElementById('sensorname');
-    console.log(inputfield.text);
-    sensorname= inputfield.text;
+    console.log(inputfield.value);
+    sensorname= inputfield.value;
 }
 
