@@ -12,8 +12,8 @@ $(document).ready(function () {
                 label: 'Temperature',
                 yAxisID: 'Temperature',
                 borderColor: "rgba(255, 200, 0, 1)",
-                pointBoarderColor: "rgba(255, 0, 0, 1)",
-                backgroundColor: "rgba(255, 0, 0, 0.4)",
+                pointBoarderColor: "rgba(255, 240, 0, 1)",
+                backgroundColor: "rgba(255, 240, 0, 0.4)",
                 pointHoverBackgroundColor: "rgba(255, 200, 0, 1)",
                 pointHoverBorderColor: "rgba(255, 200, 0, 1)",
                 data: temperatureData
@@ -22,9 +22,9 @@ $(document).ready(function () {
                 fill: false,
                 label: 'Humidity',
                 yAxisID: 'Humidity',
-                borderColor: "rgba(0, 0, 240, 1)",
-                pointBoarderColor: "rgba(0, 0, 240, 1)",
-                backgroundColor: "rgba(0, 210, 0, 0.4)",
+                borderColor: "rgba(0, 240, 240, 1)",
+                pointBoarderColor: "rgba(0, 240, 240, 1)",
+                backgroundColor: "rgba(0, 210, 240, 0.4)",
                 pointHoverBackgroundColor: "rgba(0, 210, 240, 1)",
                 pointHoverBorderColor: "rgba(0, 210, 240, 1)",
                 data: humidityData
@@ -77,7 +77,7 @@ $(document).ready(function () {
     }
     ws.onmessage = function (message) {
                   
-                  var v43= d3.select('#graphDiv').append('svg:svg').attr('width','200').attr('height','200').attr('fill','#777700');
+                  var v43= d3.select('#graphDiv').append('svg:svg').attr('width','200').attr('height','200').attr('fill','pink');
                   console.log(v43);
                   
         console.log('receive message' + message.data);
