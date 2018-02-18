@@ -75,7 +75,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-        console.log('Successfully connect WebSocket1');
+        console.log('Successfully connect WebSocket-');
     }
     ws.onmessage = function (message) {
                   
@@ -89,7 +89,7 @@ $(document).ready(function () {
             }
                   
                   if(obj.deviceID!=sensorname)
-                  console.log(obj.deviceID);
+                  console.log(String(obj.deviceID));
                   else
                   console.log(sensorname);
             timeData.push(obj.time);
