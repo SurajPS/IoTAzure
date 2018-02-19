@@ -76,7 +76,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-        console.log('Successfully connect WebSocket..');
+        console.log('Successfully connect WebSocket>');
     }
     ws.onmessage = function (message) {
                   
@@ -133,7 +133,7 @@ $(document).ready(function () {
             if (humidityData.length > maxLen) {
                 humidityData.shift();
             }
-                  
+                  console.log(temperatureData);
                   d3.select('#linechart').remove();
                   var svg= d3.select('#graphDiv').append('svg:svg').attr('id', 'linechart')
                   .attr('width',1600)
