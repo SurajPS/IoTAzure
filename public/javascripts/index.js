@@ -1,4 +1,5 @@
 var sensorname="";
+var previoussensor="";
 
 $(document).ready(function () {
     var timeData = [],
@@ -75,7 +76,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-        console.log('Successfully connect WebSocket+');
+        console.log('Successfully connect WebSocket?');
     }
     ws.onmessage = function (message) {
                   
@@ -84,14 +85,29 @@ $(document).ready(function () {
         console.log('receive message' + message.data);
         try {
             var obj = JSON.parse(message.data);
+                  
+                  if(String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase()){
+                  console.log("Unknown Sensor. Received Sensor: "+String(obj.deviceId));
+                  var inval=d3.select('#graphicinputfield').append('h3').attr('id','invalidfield');
+                  inval.innerHTML="Sensor Name Invalid or Sensor Data is not being Received!";
+                  
+                  }
+                  else{
+                  d3.select('#invalidfield').remove();
+                  if(previoussensor!=sensorname){
+                  temperatureData=[];
+                  humidityData=[];
+                  }
+                  console.log(sensorname);
+                  
+                  previoussensor=sensorname;
+                  }
+                  
             if (!obj.time || !obj.temperature ||(String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase())) {
                 return;
             }
                   
-                  if(String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase())
-                  console.log("Unknown Sensor. Received Sensor: "+String(obj.deviceId));
-                  else
-                  console.log(sensorname);
+
             timeData.push(obj.time);
             temperatureData.push(obj.temperature);
             console.log(obj.temperature);
@@ -114,6 +130,7 @@ $(document).ready(function () {
             if (humidityData.length > maxLen) {
                 humidityData.shift();
             }
+                  
                   d3.select('#linechart').remove();
                   var svg= d3.select('#graphDiv').append('svg:svg').attr('id', 'linechart')
                   .attr('width',1600)
