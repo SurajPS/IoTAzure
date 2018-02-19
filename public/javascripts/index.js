@@ -76,7 +76,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connect WebSocket:');
+                  console.log('Successfully connect WebSocket//');
     }
     ws.onmessage = function (message) {
                   
@@ -97,9 +97,9 @@ $(document).ready(function () {
                   console.log("Previous Sensor: "+previoussensor+"; Current Sensor: "+sensorname);
                   if(previoussensor.toLowerCase()!=sensorname.toLowerCase()){
                   console.log("Array Clear");
-                  //temperatureData=[];
-                  //humidityData=[];
-                  //timeData=[];
+                  temperatureData.length=0;
+                  humidityData.length=0;
+                  timeData.length=0;
                   }
                   console.log(sensorname);
                   
