@@ -97,9 +97,9 @@ $(document).ready(function () {
                   console.log("Previous Sensor: "+previoussensor+"; Current Sensor: "+sensorname);
                   if(previoussensor.toLowerCase()!=sensorname.toLowerCase()){
                   console.log("Array Clear");
-                  temperatureData=[];
-                  humidityData=[];
-                  timeData=[];
+                  //temperatureData=[];
+                  //humidityData=[];
+                  //timeData=[];
                   }
                   console.log(sensorname);
                   
