@@ -94,9 +94,11 @@ $(document).ready(function () {
                   }
                   else{
                   d3.select('#invalidfield').remove();
+                  console.log("Previous Sensor: "+previoussensor+"; Current Sensor: "+sensorname);
                   if(previoussensor!=sensorname){
                   temperatureData=[];
                   humidityData=[];
+                  timeData=[];
                   }
                   console.log(sensorname);
                   
