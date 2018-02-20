@@ -1,21 +1,3 @@
-'use strict';
-
-var EventHubClient = require('azure-event-hubs').Client;
-var connectionString = 'HostName=NodeHub.azure-devices.net;DeviceId=emulateddevice2;SharedAccessKey=KKhT5XWAYel1x+VC1Er+eG5zeK8k5sL6TLJYM1XWQ8I=';
-var printError = function (err) {
-    console.log(err.message);
-};
-
-var printMessage = function (message) {
-    console.log('Message received: ');
-    console.log(JSON.stringify(message.body));
-    console.log('');
-};
-var client = EventHubClient.fromConnectionString(connectionString);
-
-
-
-
 //Main program part
 
 
