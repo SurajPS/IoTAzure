@@ -41,7 +41,7 @@ $(document).ready(function () {
         title: {
             display: true,
             text: 'Temperature & Humidity Real-time Data',
-            fontSize: 36
+            fontSize: 28
         },
         scales: {
             yAxes: [{
