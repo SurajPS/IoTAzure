@@ -7,16 +7,19 @@ var EventHubClient = require('azure-event-hubs').Client;
 
 // Close connection to IoT Hub.
 IoTHubReaderClient.prototype.stopReadMessage = function() {
+    console.log('stopreadmessage');
   this.iotHubClient.close();
 }
 
 // Read device-to-cloud messages from IoT Hub.
 IoTHubReaderClient.prototype.startReadMessage = function(cb) {
+    console.log('start read message');
   var printError = function(err) {
     console.error(err.message || err);
   };
 
   var deviceId = process.env['Azure.IoT.IoTHub.DeviceId'];
+    console.log('IoT Hub- dev ID:' +deviceId);
 
   this.iotHubClient.open()
     .then(this.iotHubClient.getPartitionIds.bind(this.iotHubClient))
@@ -43,6 +46,7 @@ IoTHubReaderClient.prototype.startReadMessage = function(cb) {
 function IoTHubReaderClient(connectionString, consumerGroupName) {
   this.iotHubClient = EventHubClient.fromConnectionString(connectionString);
   this.consumerGroupName = consumerGroupName;
+    console.log("Entered Function-IoTHubReaderClient");
 }
 
 module.exports = IoTHubReaderClient;
