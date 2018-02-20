@@ -24,7 +24,9 @@ IoTHubReaderClient.prototype.startReadMessage = function(cb) {
   this.iotHubClient.open()
     .then(this.iotHubClient.getPartitionIds.bind(this.iotHubClient))
     .then(function(partitionIds) {
+          console.log('IoTHub1');
       return partitionIds.map(function(partitionId) {
+                              console.log('IoTHub2');
         return this.iotHubClient.createReceiver(this.consumerGroupName, partitionId, {
           'startAfterTime': Date.now()
         })
@@ -32,7 +34,9 @@ IoTHubReaderClient.prototype.startReadMessage = function(cb) {
           receiver.on('errorReceived', printError);
           receiver.on('message', (message) => {
             var from = message.annotations['iothub-connection-device-id'];
+                      console.log('IoTHub3');
             if (deviceId && deviceId !== from) {
+                      console.log('IoTHub4');
               return;
             }
             cb(message.body, Date.parse(message.enqueuedTimeUtc));
