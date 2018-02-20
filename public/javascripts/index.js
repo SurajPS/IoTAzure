@@ -80,7 +80,6 @@ $(document).ready(function () {
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
                   console.log('Successfully connected WebSocket:..');
-                  console.log(client);
                   console.log(ws);
     }
     ws.onmessage = function (message) {
