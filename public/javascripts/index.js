@@ -41,7 +41,7 @@ $(document).ready(function () {
         title: {
             display: true,
             text: 'Temperature & Humidity Real-time Data',
-            fontSize: 28
+            fontSize: 36
         },
         scales: {
             yAxes: [{
@@ -76,7 +76,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocke{}');
+                  console.log('Successfully connected WebSocket//?');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
