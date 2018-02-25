@@ -113,7 +113,7 @@ $(document).ready(function () {
                   previoussensor=sensorname;
                   }
                   
-            if (!obj.time || !obj.temperature ||(String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase())) {
+            if (!obj.time || !obj.temperature ) {
                 return;
             }
                   
