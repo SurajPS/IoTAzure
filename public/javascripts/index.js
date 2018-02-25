@@ -113,11 +113,6 @@ $(document).ready(function () {
                   previoussensor=sensorname;
                   }
                   
-            if (!obj.time || !obj.temperature || String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase()) {
-                return;
-            }
-                  
-
                   var vals={
                   time:obj.time,
                   temp: obj.temperature,
@@ -128,6 +123,12 @@ $(document).ready(function () {
                   console.log(vals);
                   allData.push(obj);
                   console.log(allData);
+                  
+                  
+            if (!obj.time || !obj.temperature || String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase()) {
+                return;
+            }
+                
                   
                   
             timeData.push(obj.time);
