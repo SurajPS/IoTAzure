@@ -118,7 +118,7 @@ $(document).ready(function () {
             }
                   
 
-                  var vals=;
+                  var vals={
                   time:obj.time,
                   temp: obj.temperature,
                   hum: obj.humidity,
