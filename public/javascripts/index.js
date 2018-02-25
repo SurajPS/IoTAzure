@@ -83,7 +83,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket???');
+                  console.log('Successfully connected WebSocket!!!');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -113,7 +113,7 @@ $(document).ready(function () {
                   previoussensor=sensorname;
                   }
                   
-            if (!obj.time || !obj.temperature ) {
+            if (!obj.time || !obj.temperature || String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase()) {
                 return;
             }
                   
@@ -122,9 +122,11 @@ $(document).ready(function () {
                   time:obj.time,
                   temp: obj.temperature,
                   hum: obj.humidity,
-                  sensorname: obj.sensorname
+                  sensorname: String(obj.sensorname)
                   }
-                  allData.push(vals);
+                  console.log("VAR: \n");
+                  console.log(vals);
+                  allData.push(obj);
                   console.log(allData);
                   
                   
