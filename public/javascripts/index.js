@@ -118,11 +118,12 @@ $(document).ready(function () {
             }
                   
 
-                  var vals;
-                  vals.time=obj.time;
-                  vals.temp= obj.temperature;
-                  vals.hum= obj.humidity;
-                  vals.sensorname= obj.sensorname;
+                  var vals=;
+                  time:obj.time;
+                  temp: obj.temperature;
+                  hum: obj.humidity;
+                  sensorname: obj.sensorname;
+                  }
                   allData.push(vals);
                   console.log(allData);
                   
