@@ -6,6 +6,10 @@ var previoussensor="";
 
 $(document).ready(function () {
     var timeData = [],
+                  allData=[],
+                  allTempData = [],
+                  allHumidData=[],
+                  alltimeData=[],
         temperatureData = [],
         humidityData = [],
         tempex = [],
@@ -94,16 +98,15 @@ $(document).ready(function () {
                   console.log("Unknown Sensor. Received Sensor: "+String(obj.deviceId));
                   var inval=d3.select('#graphicinputfield').append('h3').attr('id','invalidfield');
                   inval.innerHTML="Sensor Name Invalid or Sensor Data is not being Received!";
-                  
                   }
                   else{
                   d3.select('#invalidfield').remove();
                   console.log("Previous Sensor: "+previoussensor+"; Current Sensor: "+sensorname);
                   if(previoussensor.toLowerCase()!=sensorname.toLowerCase()){
-                  console.log("Array Clear");
-                  temperatureData.length=0;
-                  humidityData.length=0;
-                  timeData.length=0;
+                      console.log("Array Clear");
+                      temperatureData.length=0;
+                      humidityData.length=0;
+                      timeData.length=0;
                   }
                   console.log(sensorname);
                   
@@ -115,6 +118,15 @@ $(document).ready(function () {
             }
                   
 
+                  var vals;
+                  vals.time=obj.time;
+                  vals.temp= obj.temperature;
+                  vals.hum= obj.humidity;
+                  vals.sensorname= obj.sensorname;
+                  allData.push(vals);
+                  console.log(allData);
+                  
+                  
             timeData.push(obj.time);
             temperatureData.push(obj.temperature);
             console.log(obj.temperature);
