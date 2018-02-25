@@ -119,10 +119,10 @@ $(document).ready(function () {
                   
 
                   var vals=;
-                  time:obj.time;
-                  temp: obj.temperature;
-                  hum: obj.humidity;
-                  sensorname: obj.sensorname;
+                  time:obj.time,
+                  temp: obj.temperature,
+                  hum: obj.humidity,
+                  sensorname: obj.sensorname
                   }
                   allData.push(vals);
                   console.log(allData);
