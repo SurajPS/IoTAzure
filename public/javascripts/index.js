@@ -83,7 +83,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:E');
+                  console.log('Successfully connected WebSocket:^');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -131,7 +131,7 @@ $(document).ready(function () {
                 
                   
                   for(var ind=0;ind<allData.length;ind++){
-                  var val1=allData[i];
+                  var val1=allData[ind];
                   if(String(val1.sensorname).toLowerCase() == sensorname.toLowerCase())
                   {
                   timeData.push(val1.time);
