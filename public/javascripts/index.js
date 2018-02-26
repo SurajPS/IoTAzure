@@ -107,6 +107,15 @@ $(document).ready(function () {
                       temperatureData.length=0;
                       humidityData.length=0;
                       timeData.length=0;
+                  for(var ind=0;ind<allData.length;ind++){
+                  var val1=allData[ind];
+                  if(String(val1.deviceId).toLowerCase() == sensorname.toLowerCase())
+                  {
+                  timeData.push(val1.time);
+                  temperatureData.push(val1.temperature);
+                  humidityData.push(val1.humidity);
+                  }
+                  }
                   }
                   console.log(sensorname);
                   
@@ -130,18 +139,10 @@ $(document).ready(function () {
             }
                 
                   
-                  for(var ind=0;ind<allData.length;ind++){
-                  var val1=allData[ind];
-                  if(String(val1.deviceId).toLowerCase() == sensorname.toLowerCase())
-                  {
-                  timeData.push(val1.time);
-                  temperatureData.push(val1.temperature);
-                  humidityData.push(val1.humidity);
-                  }
-                  }
                   
-            //timeData.push(obj.time);
-            //temperatureData.push(obj.temperature);
+                  
+            timeData.push(obj.time);
+            temperatureData.push(obj.temperature);
             console.log(obj.temperature);
             if (obj.temperature > 30)
                 tempex.push(obj.temperature);
@@ -154,7 +155,7 @@ $(document).ready(function () {
             }
 
             if (obj.humidity) {
-               // humidityData.push(obj.humidity);
+                humidityData.push(obj.humidity);
                 console.log(obj.humidity);
                 if (obj.humidity > 30)
                     humidex.push(obj.humidity);
