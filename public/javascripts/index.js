@@ -5,6 +5,7 @@ var sensorname="";
 var previoussensor="";
 var timeData = [],
 allData=[],
+adat={},
 allTempData = [],
 allHumidData=[],
 alltimeData=[],
@@ -95,45 +96,29 @@ $(document).ready(function () {
         console.log('receive message' + message.data);
         try {
             var obj = JSON.parse(message.data);
+                
                   
-                  /*if(String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase()){
-                  console.log("Unknown Sensor. Received Sensor: "+String(obj.deviceId));
-                  var inval=d3.select('#graphicinputfield').append('h3').attr('id','invalidfield');
-                  inval.innerHTML="Sensor Name Invalid or Sensor Data is not being Received!";
-                  }
-                  else{
-                  d3.select('#invalidfield').remove();
-                  console.log("Previous Sensor: "+previoussensor+"; Current Sensor: "+sensorname);
-                  if(previoussensor.toLowerCase()!=sensorname.toLowerCase()){
-                      console.log("Array Clear");
-                      temperatureData.length=0;
-                      humidityData.length=0;
-                      timeData.length=0;
-                  for(var ind=0;ind<allData.length;ind++){
-                  var val1=allData[ind];
-                  if(String(val1.deviceId).toLowerCase() == sensorname.toLowerCase())
-                  {
-                  timeData.push(val1.time);
-                  temperatureData.push(val1.temperature);
-                  humidityData.push(val1.humidity);
-                  }
-                  }
-                  }
-                  console.log(sensorname);
-                  
-                  previoussensor=sensorname;
-                  }*/
-                  
+                  allData.push(obj);
+                  if(!adat[String(obj.deviceId).toLowerCase()]){
                   var vals={
                   time:obj.time,
                   temp: obj.temperature,
-                  hum: obj.humidity,
-                  sensorname: String(obj.deviceId)
+                  hum: obj.humidity
+                  }[];
+                  adat[String(obj.deviceId).toLowerCase()]=vals;
                   }
-                  console.log("VAR: \n");
-                  console.log(vals);
-                  allData.push(obj);
-                  console.log(allData);
+                  else
+                  {
+                  var vals=adat[String(obj.deviceId).toLowerCase()];
+                  var val2={time:obj.time,
+                  temp: obj.temperature,
+                  hum: obj.humidity}
+                  vals.push(val2);
+                  adat[String(obj.deviceId).toLowerCase()]=vals;
+                  }
+                  
+                  
+                  console.log(adat);
                   
                   
             if (!obj.time || !obj.temperature || String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase()) {
