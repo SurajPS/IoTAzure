@@ -96,7 +96,7 @@ $(document).ready(function () {
         try {
             var obj = JSON.parse(message.data);
                   
-                  if(String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase()){
+                  /*if(String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase()){
                   console.log("Unknown Sensor. Received Sensor: "+String(obj.deviceId));
                   var inval=d3.select('#graphicinputfield').append('h3').attr('id','invalidfield');
                   inval.innerHTML="Sensor Name Invalid or Sensor Data is not being Received!";
@@ -122,7 +122,7 @@ $(document).ready(function () {
                   console.log(sensorname);
                   
                   previoussensor=sensorname;
-                  }
+                  }*/
                   
                   var vals={
                   time:obj.time,
@@ -252,5 +252,6 @@ function refreshsensor(){
             humidityData.push(val1.humidity);
         }
     }
+    myLineChart.update();
 }
 
