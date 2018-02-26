@@ -117,7 +117,7 @@ $(document).ready(function () {
                   time:obj.time,
                   temp: obj.temperature,
                   hum: obj.humidity,
-                  sensorname: String(obj.sensorname)
+                  sensorname: String(obj.deviceId)
                   }
                   console.log("VAR: \n");
                   console.log(vals);
@@ -132,7 +132,7 @@ $(document).ready(function () {
                   
                   for(var ind=0;ind<allData.length;ind++){
                   var val1=allData[ind];
-                  if(String(val1.sensorname).toLowerCase() == sensorname.toLowerCase())
+                  if(String(val1.deviceId).toLowerCase() == sensorname.toLowerCase())
                   {
                   timeData.push(val1.time);
                   temperatureData.push(val1.temperature);
