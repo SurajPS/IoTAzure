@@ -130,7 +130,7 @@ $(document).ready(function () {
             }
                 
                   
-                  for(int ind=0;ind<allData.length;ind++){
+                  for(var ind=0;ind<allData.length;ind++){
                   var val1=allData[i];
                   if(String(val1.sensorname).toLowerCase() == sensorname.toLowerCase())
                   {
