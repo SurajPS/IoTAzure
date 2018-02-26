@@ -3,82 +3,84 @@
 
 var sensorname="";
 var previoussensor="";
+var timeData = [],
+allData=[],
+allTempData = [],
+allHumidData=[],
+alltimeData=[],
+temperatureData = [],
+humidityData = [],
+tempex = [],
+humidex = [];
+var data = {
+labels: timeData,
+datasets: [
+           {
+           fill: false,
+           label: 'Temperature',
+           yAxisID: 'Temperature',
+           borderColor: "rgba(255, 200, 0, 1)",
+           pointBoarderColor: "rgba(255, 240, 0, 1)",
+           backgroundColor: "rgba(255, 240, 0, 0.4)",
+           pointHoverBackgroundColor: "rgba(255, 200, 0, 1)",
+           pointHoverBorderColor: "rgba(255, 200, 0, 1)",
+           data: temperatureData
+           },
+           {
+           fill: false,
+           label: 'Humidity',
+           yAxisID: 'Humidity',
+           borderColor: "rgba(0, 240, 240, 1)",
+           pointBoarderColor: "rgba(0, 240, 240, 1)",
+           backgroundColor: "rgba(0, 210, 240, 0.4)",
+           pointHoverBackgroundColor: "rgba(0, 210, 240, 1)",
+           pointHoverBorderColor: "rgba(0, 210, 240, 1)",
+           data: humidityData
+           }
+           ]
+}
+
+//The chart Creation
+
+var basicOption = {
+title: {
+display: true,
+text: 'Temperature & Humidity Real-time Data',
+fontSize: 36
+},
+scales: {
+yAxes: [{
+        id: 'Temperature',
+        type: 'linear',
+        scaleLabel: {
+        labelString: 'Temperature(C)',
+        display: true
+        },
+        position: 'left',
+        }, {
+        id: 'Humidity',
+        type: 'linear',
+        scaleLabel: {
+        labelString: 'Humidity(%)',
+        display: true
+        },
+        position: 'right'
+        }]
+}
+}
+//Get the context of the canvas element we want to select
+var ctx = document.getElementById("myChart").getContext("2d");
+var optionsNoAnimation = { animation: true }
+var myLineChart = new Chart(ctx, {
+                            type: 'line',
+                            data: data,
+                            options: basicOption
+                            });
+
+
 
 $(document).ready(function () {
-    var timeData = [],
-                  allData=[],
-                  allTempData = [],
-                  allHumidData=[],
-                  alltimeData=[],
-        temperatureData = [],
-        humidityData = [],
-        tempex = [],
-        humidex = [];
-    var data = {
-        labels: timeData,
-        datasets: [
-            {
-                fill: false,
-                label: 'Temperature',
-                yAxisID: 'Temperature',
-                borderColor: "rgba(255, 200, 0, 1)",
-                pointBoarderColor: "rgba(255, 240, 0, 1)",
-                backgroundColor: "rgba(255, 240, 0, 0.4)",
-                pointHoverBackgroundColor: "rgba(255, 200, 0, 1)",
-                pointHoverBorderColor: "rgba(255, 200, 0, 1)",
-                data: temperatureData
-            },
-            {
-                fill: false,
-                label: 'Humidity',
-                yAxisID: 'Humidity',
-                borderColor: "rgba(0, 240, 240, 1)",
-                pointBoarderColor: "rgba(0, 240, 240, 1)",
-                backgroundColor: "rgba(0, 210, 240, 0.4)",
-                pointHoverBackgroundColor: "rgba(0, 210, 240, 1)",
-                pointHoverBorderColor: "rgba(0, 210, 240, 1)",
-                data: humidityData
-            }
-        ]
-    }
 
-    //The chart Creation 
-
-    var basicOption = {
-        title: {
-            display: true,
-            text: 'Temperature & Humidity Real-time Data',
-            fontSize: 36
-        },
-        scales: {
-            yAxes: [{
-                id: 'Temperature',
-                type: 'linear',
-                scaleLabel: {
-                    labelString: 'Temperature(C)',
-                    display: true
-                },
-                position: 'left',
-            }, {
-                id: 'Humidity',
-                type: 'linear',
-                scaleLabel: {
-                    labelString: 'Humidity(%)',
-                    display: true
-                },
-                position: 'right'
-            }]
-        }
-    }
-
-    //Get the context of the canvas element we want to select
-    var ctx = document.getElementById("myChart").getContext("2d");
-    var optionsNoAnimation = { animation: true }
-    var myLineChart = new Chart(ctx, {
-        type: 'line',
-        data: data,
-        options: basicOption
-    });
 
 
     var ws = new WebSocket('wss://' + location.host);
@@ -237,5 +239,18 @@ function refreshsensor(){
     var inputfield= document.getElementById('sensorname');
     console.log(inputfield.value);
     sensorname= inputfield.value;
+    
+    temperatureData.length=0;
+    humidityData.length=0;
+    timeData.length=0;
+    for(var ind=0;ind<allData.length;ind++){
+        var val1=allData[ind];
+        if(String(val1.deviceId).toLowerCase() == sensorname.toLowerCase())
+        {
+            timeData.push(val1.time);
+            temperatureData.push(val1.temperature);
+            humidityData.push(val1.humidity);
+        }
+    }
 }
 
