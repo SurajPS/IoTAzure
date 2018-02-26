@@ -100,22 +100,29 @@ $(document).ready(function () {
                   
                   allData.push(obj);
                   if(!adat[String(obj.deviceId).toLowerCase()]){
+                  var atime=[];time.push(obj.time);
+                  var atemp=[];temp.push(obj.temp);
+                  var ahum=[];hum.push(obj.hum);
                   var vals={
-                  time:obj.time,
-                  temp: obj.temperature,
-                  hum: obj.humidity
+                  time:atime,
+                  temp: atemp,
+                  hum: ahum
                   };
                   var val3=[];
                   val3.push(vals);
-                  adat[String(obj.deviceId).toLowerCase()]=val3;
+                  adat[String(obj.deviceId).toLowerCase()]=vals;
                   }
                   else
                   {
-                  var vals=adat[String(obj.deviceId).toLowerCase()];
-                  var val2={time:obj.time,
+                  var val2=adat[String(obj.deviceId).toLowerCase()];
+                  var vtemp=val2[temp]; vtemp.push(obj.temperature);
+                  var vtime=val2[time]; vtime.push(obj.time);
+                  var vhum=val2[hum]; vhum.push(obj.humidity);
+                 /* var val2={time:obj.time,
                   temp: obj.temperature,
                   hum: obj.humidity}
-                  vals.push(val2);
+                  vals.push(val2);*/
+                  var vals={time:vtime,temp:vtemp,hum=vhum};
                   adat[String(obj.deviceId).toLowerCase()]=vals;
                   }
                   
