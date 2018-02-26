@@ -100,9 +100,9 @@ $(document).ready(function () {
                   
                   allData.push(obj);
                   if(!adat[String(obj.deviceId).toLowerCase()]){
-                  var atime=[];time.push(obj.time);
-                  var atemp=[];temp.push(obj.temp);
-                  var ahum=[];hum.push(obj.hum);
+                  var atime=[];atime.push(obj.time);
+                  var atemp=[];atemp.push(obj.temp);
+                  var ahum=[];ahum.push(obj.hum);
                   var vals={
                   time:atime,
                   temp: atemp,
