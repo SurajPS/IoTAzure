@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:A');
+                  console.log('Successfully connected WebSocket:B');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -103,18 +103,17 @@ $(document).ready(function () {
                   var atime=[];atime.push(obj.time);
                   var atemp=[];atemp.push(obj.temp);
                   var ahum=[];ahum.push(obj.hum);
-                  var vals={
-                  time:atime,
-                  temp: atemp,
-                  hum: ahum
-                  };
-                  var val3=[];
-                  val3.push(vals);
+                  var vals={};
+                  vals[time]= atime;
+                  vals[temp]= atemp;
+                  vals[hum]= ahum;
+                  //var val3=[];
+                  //val3.push(vals);
                   adat[String(obj.deviceId).toLowerCase()]=vals;
                   }
                   else
                   {
-                  var val2=adat[String(obj.deviceId).toLowerCase()];
+                  var val2=adat[String(obj.deviceId).toLowerCase()];console.log(val2);
                   var vtemp=val2[temp]; vtemp.push(obj.temperature);
                   var vtime=val2[time]; vtime.push(obj.time);
                   var vhum=val2[hum]; vhum.push(obj.humidity);
