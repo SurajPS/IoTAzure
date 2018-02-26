@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:K');
+                  console.log('Successfully connected WebSocket:A');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -122,7 +122,7 @@ $(document).ready(function () {
                   temp: obj.temperature,
                   hum: obj.humidity}
                   vals.push(val2);*/
-                  var vals={time:vtime,temp:vtemp,hum=vhum};
+                  var vals={time:vtime,temp:vtemp,hum:vhum};
                   adat[String(obj.deviceId).toLowerCase()]=vals;
                   }
                   
