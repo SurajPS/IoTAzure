@@ -107,7 +107,7 @@ $(document).ready(function () {
                   };
                   var val3=[];
                   val3.push(vals);
-                  adat[String(obj.deviceId).toLowerCase()]=vals;
+                  adat[String(obj.deviceId).toLowerCase()]=val3;
                   }
                   else
                   {
