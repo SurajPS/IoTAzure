@@ -104,9 +104,9 @@ $(document).ready(function () {
                   var atemp=[];atemp.push(obj.temp);
                   var ahum=[];ahum.push(obj.hum);
                   var vals={};
-                  vals[time]= atime;
-                  vals[temp]= atemp;
-                  vals[hum]= ahum;
+                  vals['time']= atime;
+                  vals['temp']= atemp;
+                  vals['hum']= ahum;
                   //var val3=[];
                   //val3.push(vals);
                   adat[String(obj.deviceId).toLowerCase()]=vals;
@@ -114,14 +114,14 @@ $(document).ready(function () {
                   else
                   {
                   var val2=adat[String(obj.deviceId).toLowerCase()];console.log(val2);
-                  var vtemp=val2[temp]; vtemp.push(obj.temperature);
-                  var vtime=val2[time]; vtime.push(obj.time);
-                  var vhum=val2[hum]; vhum.push(obj.humidity);
+                  var vtemp=val2['temp']; vtemp.push(obj.temperature);
+                  var vtime=val2['time']; vtime.push(obj.time);
+                  var vhum=val2['hum']; vhum.push(obj.humidity);
                  /* var val2={time:obj.time,
                   temp: obj.temperature,
                   hum: obj.humidity}
                   vals.push(val2);*/
-                  var vals={time:vtime,temp:vtemp,hum:vhum};
+                  var vals={'time':vtime,'temp':vtemp,'hum':vhum};
                   adat[String(obj.deviceId).toLowerCase()]=vals;
                   }
                   
