@@ -144,10 +144,7 @@ $(document).ready(function () {
                   console.log(adat[String(obj.deviceId).toLowerCase()].hum);
                   
              
-                  timeData=adat[String(obj.deviceId).toLowerCase()].time;
-                  temperatureData=adat[String(obj.deviceId).toLowerCase()].temp;
-                  humidityData=adat[String(obj.deviceId).toLowerCase()].hum;
-                  /*
+            
             timeData.push(obj.time);
             temperatureData.push(obj.temperature);
             console.log(obj.temperature);
@@ -175,7 +172,7 @@ $(document).ready(function () {
                   var svg= d3.select('#graphDiv').append('svg:svg').attr('id', 'linechart')
                   .attr('width',1600)
                   .attr('height','300');
-                  
+                /*
             //.append('rect').attr('width','100%').attr('height','100%').attr('fill','#FEFEFE');
                   
                   g = svg.append("g").attr("transform", "translate(180px,180px)");
@@ -248,7 +245,13 @@ function refreshsensor(){
     temperatureData.length=0;
     humidityData.length=0;
     timeData.length=0;
-    for(var ind=0;ind<allData.length;ind++){
+    if(adat[String(sensorname).toLowerCase()]){
+    temperatureData.push(adat[String(sensorname).toLowerCase()].temp);
+    timeData.push(adat[String(sensorname).toLowerCase()].time);
+        humidityData.push(adat[String(sensorname).toLowerCase()].hum);}
+    else
+        console.log("Unknown Sensor Name");
+    /*for(var ind=0;ind<allData.length;ind++){
         var val1=allData[ind];
         if(String(val1.deviceId).toLowerCase() == sensorname.toLowerCase())
         {
@@ -256,7 +259,7 @@ function refreshsensor(){
             temperatureData.push(val1.temperature);
             humidityData.push(val1.humidity);
         }
-    }
+    }*/
     myLineChart.update();
 }
 
