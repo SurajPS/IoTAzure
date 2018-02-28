@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:C');
+                  console.log('Successfully connected WebSocket:D');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -100,9 +100,9 @@ $(document).ready(function () {
                   
                   allData.push(obj);
                   if(!adat[String(obj.deviceId).toLowerCase()]){
-                  var atime=[];atime.push(obj.time);
-                  var atemp=[];atemp.push(obj.temp);
-                  var ahum=[];ahum.push(obj.hum);
+                  var atime=[];atime[0]=(obj.time);
+                  var atemp=[];atemp[0]=(obj.temp);
+                  var ahum=[];ahum[0]=(obj.hum);
                   var vals={};
                   vals['time']= atime;
                   vals['temp']= atemp;
