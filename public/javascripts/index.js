@@ -101,8 +101,8 @@ $(document).ready(function () {
                   allData.push(obj);
                   if(!adat[String(obj.deviceId).toLowerCase()]){
                   var atime=[];atime[0]=(obj.time);
-                  var atemp=[];atemp[0]=(obj.temp);
-                  var ahum=[];ahum[0]=(obj.hum);
+                  var atemp=[];atemp[0]=(obj.temperature);
+                  var ahum=[];ahum[0]=(obj.humidity);
                   var vals={};
                   vals['time']= atime;
                   vals['temp']= atemp;
@@ -121,13 +121,19 @@ $(document).ready(function () {
                   temp: obj.temperature,
                   hum: obj.humidity}
                   vals.push(val2);*/
+                  if (timeData.length > 50) {
+                  timeData.shift();
+                  temperatureData.shift();
+                  humidityData.shift();
+                  }
+                  
                   var vals={'time':vtime,'temp':vtemp,'hum':vhum};
                   adat[String(obj.deviceId).toLowerCase()]=vals;
                   }
                   
                   
                   
-            if (!obj.time || !obj.temperature || String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase()) {
+            if (!obj.time || !obj.temperature) {
                 return;
             }
                 
@@ -137,7 +143,11 @@ $(document).ready(function () {
                   console.log(adat[String(obj.deviceId).toLowerCase()].temp);
                   console.log(adat[String(obj.deviceId).toLowerCase()].hum);
                   
-                  
+             
+                  timeData=adat[String(obj.deviceId).toLowerCase()].time;
+                  temperatureData=adat[String(obj.deviceId).toLowerCase()].temp;
+                  humidityData=adat[String(obj.deviceId).toLowerCase()].hum;
+                  /*
             timeData.push(obj.time);
             temperatureData.push(obj.temperature);
             console.log(obj.temperature);
@@ -167,7 +177,7 @@ $(document).ready(function () {
                   .attr('height','300');
                   
             //.append('rect').attr('width','100%').attr('height','100%').attr('fill','#FEFEFE');
-                  /*
+                  
                   g = svg.append("g").attr("transform", "translate(180px,180px)");
                   
                   var parseTime = d3.timeParse("%y:%m:%d");
