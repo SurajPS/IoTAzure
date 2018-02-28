@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:E');
+                  console.log('Successfully connected WebSocket:F');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
