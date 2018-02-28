@@ -126,14 +126,16 @@ $(document).ready(function () {
                   }
                   
                   
-                  console.log(adat);
-                  
                   
             if (!obj.time || !obj.temperature || String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase()) {
                 return;
             }
                 
                   
+               
+                  console.log(adat[String(obj.deviceId).toLowerCase()].time);
+                  console.log(adat[String(obj.deviceId).toLowerCase()].temp);
+                  console.log(adat[String(obj.deviceId).toLowerCase()].hum);
                   
                   
             timeData.push(obj.time);
