@@ -239,6 +239,9 @@ $(document).ready(function () {
 
 function refreshsensor(){
     var inputfield= document.getElementById('sensorname');
+    console.log(temperatureData);
+    console.log(timeData);
+    console.log(humidityData);
     console.log(inputfield.value);
     sensorname= inputfield.value;
     
