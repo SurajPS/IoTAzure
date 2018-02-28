@@ -248,7 +248,7 @@ function refreshsensor(){
     if(adat[String(sensorname).toLowerCase()]){
         temperatureData.push(adat[String(sensorname).toLowerCase()].temp);console.log(temperatureData);
         timeData.push(adat[String(sensorname).toLowerCase()].time);console.log(timeData);
-        humidityData.push(adat[String(sensorname).toLowerCase()].hum);consol.log(humidityData);
+        humidityData.push(adat[String(sensorname).toLowerCase()].hum);console.log(humidityData);
     }
     else
         console.log("Unknown Sensor Name");
