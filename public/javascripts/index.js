@@ -133,7 +133,7 @@ $(document).ready(function () {
                   
                   
                   
-            if (!obj.time || !obj.temperature) {
+            if (!obj.time || !obj.temperature || String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase()) {
                 return;
             }
                 
@@ -246,9 +246,10 @@ function refreshsensor(){
     humidityData.length=0;
     timeData.length=0;
     if(adat[String(sensorname).toLowerCase()]){
-    temperatureData.push(adat[String(sensorname).toLowerCase()].temp);
-    timeData.push(adat[String(sensorname).toLowerCase()].time);
-        humidityData.push(adat[String(sensorname).toLowerCase()].hum);}
+        temperatureData.push(adat[String(sensorname).toLowerCase()].temp);console.log(temperatureData);
+        timeData.push(adat[String(sensorname).toLowerCase()].time);console.log(timeData);
+        humidityData.push(adat[String(sensorname).toLowerCase()].hum);consol.log(humidityData);
+    }
     else
         console.log("Unknown Sensor Name");
     /*for(var ind=0;ind<allData.length;ind++){
