@@ -204,21 +204,34 @@ $(document).ready(function () {
                          x.domain(d3.extent(datas, function(d) { return d.date; }));
                          y.domain([0, d3.max(datas, function(d) { return d.temp; })]);
                          
-                         // Add the valueline path.
-                         svg.append("path")
-                         .data(datas[i])
-                         .attr("class", "line")
-                         .attr("d", valueline);
                          
                          // Add the X Axis
-                         svg.append("g")
-                         .attr("transform", "translate(0," + height + ")")
-                         .call(d3.axisBottom(x));
+                         
+                                                            svg.append("g")
+                                                            .attr("transform", "translate(0," + height + ")")
+                                                            .call(d3.axisBottom(x)).select(".domain")
+                                                            .remove();
                          
                          // Add the Y Axis
-                         svg.append("g")
-                         .call(d3.axisLeft(y));
-                                                            });
+                                                            g.append("g")
+                                                            .call(d3.axisLeft(y))
+                                                            .append("text")
+                                                            .attr("fill", "#000")
+                                                            .attr("transform", "rotate(-90)")
+                                                            .attr("y", 6);
+                                                            
+                                                            
+                                                            // Add the valueline path.
+                                                            svg.append("path")
+                                                            .data(datas[i])
+                                                            .attr("class", "line")
+                                                            .attr("fill", "none")
+                                                            .attr("stroke", "steelblue")
+                                                            .attr("stroke-linejoin", "round")
+                                                            .attr("stroke-linecap", "round")
+                                                            .attr("stroke-width", 1.5)
+                                                            .attr("d", valueline);
+                        });
 
             myLineChart.update();
         } catch (err) {
