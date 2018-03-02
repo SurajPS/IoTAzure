@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:N');
+                  console.log('Successfully connected WebSocket:O');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -178,7 +178,7 @@ $(document).ready(function () {
                   height = 500 - margin.top - margin.bottom;
                   
                   // parse the date / time
-                  var parseTime = d3.time.format("%d %b %H:%M:%S");
+                  var parseTime = d3.timeFormat("%d %b %H:%M:%S");
                   
                   // set the ranges
                   var x = d3.scaleTime().range([0, width]);
