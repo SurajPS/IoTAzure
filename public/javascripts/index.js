@@ -167,7 +167,7 @@ $(document).ready(function () {
                   
                   var datas = timeData.map(function(d, i){
                                            return { 'date' : d, 'temp' : temperatureData[i], 'hum' : humidityData[i] };
-                                           };
+                                           });
                   
                   
                   d3.select('#linechart').remove();
