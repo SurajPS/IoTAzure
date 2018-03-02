@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:Q');
+                  console.log('Successfully connected WebSocket:R');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -213,7 +213,7 @@ $(document).ready(function () {
                                                             .remove();
                          
                          // Add the Y Axis
-                                                            g.append("g")
+                                                            svg.append("g")
                                                             .call(d3.axisLeft(y))
                                                             .append("text")
                                                             .attr("fill", "#000")
