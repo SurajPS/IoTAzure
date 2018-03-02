@@ -97,7 +97,7 @@ $(document).ready(function () {
         try {
             var obj = JSON.parse(message.data);
                 
-                  var thisdate= new Date(obj.Date);
+                  var thisdate= new Date(String(obj.Date)+'Z');
                   console.log(thisdate);
                   allData.push(obj);
                   if(!adat[String(obj.deviceId).toLowerCase()]){
