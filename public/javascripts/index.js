@@ -263,12 +263,12 @@ function refreshsensor(){
 }
 
 function dateformat(da){
-    var year=da.substring(0,4);
-    var month=da.substring(5,7);
-    var day= da.substring(8,10);
-    var hour=da.substring(11,13);
-    var min=da.substring(14,16);
-    var sec=da.substring(17,19);
+    var year=String(da.substring(0,4));
+    var month=String(da.substring(5,7));
+    var day= String(da.substring(8,10));
+    var hour=String(da.substring(11,13));
+    var min=String(da.substring(14,16));
+    var sec=String(da.substring(17,19));
     var datetime=new Date(year+"-"+month+"-"+day+"T"+hour+":"+min+":"+sec+"Z");
     console.log(datetime);
 }
