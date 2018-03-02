@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:M');
+                  console.log('Successfully connected WebSocket:N');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -97,13 +97,12 @@ $(document).ready(function () {
         try {
             var obj = JSON.parse(message.data);
                 
-                  
-                  console.log(new Date(obj.time));
-                  dateformat(obj.time);
+                
+                  var datetime=dateformat(obj.time);
                   allData.push(obj);
                   
                   if(!adat[String(obj.deviceId).toLowerCase()]){
-                  var atime=[];atime[0]=(obj.time);
+                  var atime=[];atime[0]=(datetime);
                   var atemp=[];atemp[0]=(obj.temperature);
                   var ahum=[];ahum[0]=(obj.humidity);
                   var vals={};
@@ -118,7 +117,7 @@ $(document).ready(function () {
                   {
                   var val2=adat[String(obj.deviceId).toLowerCase()];console.log(val2);
                   var vtemp=val2['temp']; vtemp.push(obj.temperature);
-                  var vtime=val2['time']; vtime.push(obj.time);
+                  var vtime=val2['time']; vtime.push(datetime);
                   var vhum=val2['hum']; vhum.push(obj.humidity);
                  /* var val2={time:obj.time,
                   temp: obj.temperature,
@@ -142,7 +141,7 @@ $(document).ready(function () {
                   
              
             
-            timeData.push(obj.time);
+            timeData.push(datetime);
             temperatureData.push(obj.temperature);
             console.log(obj.temperature);
             if (obj.temperature > 30)
@@ -274,5 +273,5 @@ function dateformat(da){
     var sec=(String(da)).substring(17,19);
     var sdatetime=(year+"-"+month+"-"+day+"T"+hour+":"+min+":"+sec+"Z");
     var datetime= new Date(sdatetime);
-    console.log("GT: "+datetime);
+    return datetime;
 }
