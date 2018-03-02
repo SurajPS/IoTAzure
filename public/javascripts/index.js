@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:F');
+                  console.log('Successfully connected WebSocket:H');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -135,13 +135,7 @@ $(document).ready(function () {
                   
             if (!obj.time || !obj.temperature || String(obj.deviceId).toLowerCase()!=sensorname.toLowerCase()) {
                 return;
-            }
-                
-                  
-               
-                  console.log(adat[String(obj.deviceId).toLowerCase()].time);
-                  console.log(adat[String(obj.deviceId).toLowerCase()].temp);
-                  console.log(adat[String(obj.deviceId).toLowerCase()].hum);
+                  }
                   
              
             
@@ -239,9 +233,10 @@ $(document).ready(function () {
 
 function refreshsensor(){
     var inputfield= document.getElementById('sensorname');
+    console.log(adat);
     console.log(temperatureData);
-    console.log(timeData);
     console.log(humidityData);
+    console.log(timeData);
     console.log(inputfield.value);
     sensorname= inputfield.value;
     
@@ -249,8 +244,8 @@ function refreshsensor(){
     humidityData.length=0;
     timeData.length=0;
     if(adat[String(sensorname).toLowerCase()]){
-        temperatureData.push(adat[String(sensorname).toLowerCase()].temp);console.log(temperatureData);
         timeData.push(adat[String(sensorname).toLowerCase()].time);console.log(timeData);
+        temperatureData.push(adat[String(sensorname).toLowerCase()].temp);console.log(temperatureData);
         humidityData.push(adat[String(sensorname).toLowerCase()].hum);console.log(humidityData);
     }
     else
