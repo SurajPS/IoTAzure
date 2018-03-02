@@ -223,7 +223,7 @@ $(document).ready(function () {
                                                             
                                                             // Add the valueline path.
                                                             svg.append("path")
-                                                            .data([datas])
+                                                            .data([datas[i]])
                                                             .attr("class", "line")
                                                             .attr("fill", "none")
                                                             .attr("stroke", "steelblue")
