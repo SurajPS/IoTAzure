@@ -200,10 +200,10 @@ $(document).ready(function () {
                         "translate(" + margin.left + "," + margin.top + ")");
                   
                   // Get the data
-                         
+                                           timeData.forEach(function(d,i){
                          // Scale the range of the data
-                         x.domain(d3.extent(data, function(d) { return d.date; }));
-                         y.domain([0, d3.max(data, function(d) { return d.temp; })]);
+                         x.domain(d3.extent(datas, function(d) { return d.date; }));
+                         y.domain([0, d3.max(datas, function(d) { return d.temp; })]);
                          
                          // Add the valueline path.
                          svg.append("path")
@@ -219,7 +219,7 @@ $(document).ready(function () {
                          // Add the Y Axis
                          svg.append("g")
                          .call(d3.axisLeft(y));
-                  
+                                                            });
 
             myLineChart.update();
         } catch (err) {
