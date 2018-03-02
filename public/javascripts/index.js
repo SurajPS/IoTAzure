@@ -97,7 +97,8 @@ $(document).ready(function () {
         try {
             var obj = JSON.parse(message.data);
                 
-                  
+                  var thisdate= new Date(obj.Date);
+                  console.log(thisdate);
                   allData.push(obj);
                   if(!adat[String(obj.deviceId).toLowerCase()]){
                   var atime=[];atime[0]=(obj.time);
