@@ -97,8 +97,9 @@ $(document).ready(function () {
         try {
             var obj = JSON.parse(message.data);
                 
-                  //dateformat(obj.time);
+                  
                   console.log(new Date(obj.time));
+                  dateformat(obj.time);
                   allData.push(obj);
                   
                   if(!adat[String(obj.deviceId).toLowerCase()]){
@@ -273,5 +274,5 @@ function dateformat(da){
     var sec=(String(da)).substring(17,19);
     var sdatetime=(year+"-"+month+"-"+day+"T"+hour+":"+min+":"+sec+"Z");
     var datetime= new Date(sdatetime);
-    console.log(sdatetime);
+    console.log("GT: "+datetime);
 }
