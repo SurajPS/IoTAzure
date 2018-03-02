@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:J');
+                  console.log('Successfully connected WebSocket:K');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -269,6 +269,7 @@ function dateformat(da){
     var hour=(String(da)).substring(11,13);
     var min=(String(da)).substring(14,16);
     var sec=(String(da)).substring(17,19);
-    var datetime=new Date(year+"-"+month+"-"+day+"T"+hour+":"+min+":"+sec+"Z");
-    console.log(datetime);
+    var sdatetime=(year+"-"+month+"-"+day+"T"+hour+":"+min+":"+sec+"Z");
+    var datetime= new Date(sdatetime);
+    console.log(sdatetime);
 }
