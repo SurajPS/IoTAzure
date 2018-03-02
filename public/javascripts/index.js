@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:I');
+                  console.log('Successfully connected WebSocket:J');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -262,7 +262,7 @@ function refreshsensor(){
     myLineChart.update();
 }
 
-function dateformat(String da){
+function dateformat(da){
     var year=da.substring(0,4);
     var month=da.substring(5,7);
     var day= da.substring(8,10);
