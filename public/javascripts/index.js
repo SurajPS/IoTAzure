@@ -164,61 +164,61 @@ $(document).ready(function () {
                 humidityData.shift();
             }
                   console.log(temperatureData);
+                  
+                  var datas = timeData.map(function(d, i){
+                                           return { 'date' : d, 'temp' : temperatureData[i], 'hum' : humidityData[i] };
+                                           };
+                  
+                  
                   d3.select('#linechart').remove();
-                  var svg= d3.select('#graphDiv').append('svg:svg').attr('id', 'linechart')
-                  .attr('width',1600)
-                  .attr('height','300');
-                /*
-            //.append('rect').attr('width','100%').attr('height','100%').attr('fill','#FEFEFE');
+                  var svg= d3.select('#graphDiv').append('svg:svg').attr('id', 'linechart');
+                  // set the dimensions and margins of the graph
+                  var margin = {top: 20, right: 20, bottom: 30, left: 50},
+                  width = 960 - margin.left - margin.right,
+                  height = 500 - margin.top - margin.bottom;
                   
-                  g = svg.append("g").attr("transform", "translate(180px,180px)");
+                  // parse the date / time
+                  var parseTime = d3.time.format("%d %b %H:%M:%S");
                   
-                  var parseTime = d3.timeParse("%y:%m:%d");
+                  // set the ranges
+                  var x = d3.scaleTime().range([0, width]);
+                  var y = d3.scaleLinear().range([height, 0]);
                   
-                  var x = d3.scaleTime()
-                  .rangeRound([0, 1500]);
+                  // define the line
+                  var valueline = d3.line()
+                  .x(function(d) { return x(d.date); })
+                  .y(function(d) { return y(d.temp); });
                   
-                  var y = d3.scaleLinear()
-                  .rangeRound([200, 0]);
+                  // append the svg obgect to the body of the page
+                  // appends a 'group' element to 'svg'
+                  // moves the 'group' element to the top left margin
+                  var svg = d3.select("#graphdiv").append("svg").attr('id','linechart')
+                  .attr("width", width + margin.left + margin.right)
+                  .attr("height", height + margin.top + margin.bottom)
+                  .append("g")
+                  .attr("transform",
+                        "translate(" + margin.left + "," + margin.top + ")");
                   
-                  var line = d3.line()
-                  .x(function(d) { return x(timeData); })
-                  .y(function(d) { return y(temperatureData); });
-                  
-                 
-                  d3.tsv("data.tsv", function(d) {
-                         d.date = parseTime(timeData);
-                         d.temperatureData = +temperatureData;
-                         return d;
-                         }, function(error, data) {
-                         if (error) throw error;
+                  // Get the data
                          
-                         g.append("g")
-                         .attr("transform", "translate(0,200px)")
-                         .call(d3.axisBottom(x))
-                         .select(".domain")
-                         .remove();
+                         // Scale the range of the data
+                         x.domain(d3.extent(data, function(d) { return d.date; }));
+                         y.domain([0, d3.max(data, function(d) { return d.temp; })]);
                          
-                         g.append("g")
-                         .call(d3.axisLeft(y))
-                         .append("text")
-                         .attr("fill", "#000")
-                         .attr("transform", "rotate(-90)")
-                         .attr("y", 6)
-                         .attr("dy", "0.71em")
-                         .attr("text-anchor", "end")
-                         .text("Temperature");
+                         // Add the valueline path.
+                         svg.append("path")
+                         .data(datas)
+                         .attr("class", "line")
+                         .attr("d", valueline);
                          
-                         g.append("path")
-                         .datum(data)
-                         .attr("fill", "none")
-                         .attr("stroke", "steelblue")
-                         .attr("stroke-linejoin", "round")
-                         .attr("stroke-linecap", "round")
-                         .attr("stroke-width", 1.5)
-                         .attr("d", line);
-                         });
-*/
+                         // Add the X Axis
+                         svg.append("g")
+                         .attr("transform", "translate(0," + height + ")")
+                         .call(d3.axisBottom(x));
+                         
+                         // Add the Y Axis
+                         svg.append("g")
+                         .call(d3.axisLeft(y));
                   
 
             myLineChart.update();
