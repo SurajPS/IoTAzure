@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:R');
+                  console.log('Successfully connected WebSocket:S');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -185,7 +185,7 @@ $(document).ready(function () {
                   
                   // define the line
                   var valueline = d3.line()
-                  .x(function(d) { return x(d.date); })
+                  .x(function(d) { console.log('valueline:'+d);return x(d.date); })
                   .y(function(d) { return y(d.temp); });
                   
                   // append the svg obgect to the body of the page
