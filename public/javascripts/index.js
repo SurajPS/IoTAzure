@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:O');
+                  console.log('Successfully connected WebSocket:P');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -166,12 +166,11 @@ $(document).ready(function () {
                   console.log(temperatureData);
                   
                   var datas = timeData.map(function(d, i){
-                                           return { 'date' : d, 'temp' : temperatureData[i], 'hum' : humidityData[i] };
+                                           return { 'date' : timeData[i], 'temp' : temperatureData[i], 'hum' : humidityData[i] };
                                            });
+                  console.log(datas);
                   
-                  
-                  d3.select('#linechart').remove();
-                  var svg= d3.select('#graphDiv').append('svg:svg').attr('id', 'linechart');
+                  d3.select('#linechart').remove();]
                   // set the dimensions and margins of the graph
                   var margin = {top: 20, right: 20, bottom: 30, left: 50},
                   width = 960 - margin.left - margin.right,
@@ -207,7 +206,7 @@ $(document).ready(function () {
                          
                          // Add the valueline path.
                          svg.append("path")
-                         .data(datas)
+                         .data(datas[i])
                          .attr("class", "line")
                          .attr("d", valueline);
                          
