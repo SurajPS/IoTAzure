@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:H');
+                  console.log('Successfully connected WebSocket:I');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -97,8 +97,7 @@ $(document).ready(function () {
         try {
             var obj = JSON.parse(message.data);
                 
-                  var thisdate= new Date(String(obj.Date)+'Z');
-                  console.log(thisdate);
+                  dateformat(obj.Date);
                   allData.push(obj);
                   if(!adat[String(obj.deviceId).toLowerCase()]){
                   var atime=[];atime[0]=(obj.time);
@@ -263,3 +262,13 @@ function refreshsensor(){
     myLineChart.update();
 }
 
+function dateformat(String da){
+    var year=da.substring(0,4);
+    var month=da.substring(5,7);
+    var day= da.substring(8,10);
+    var hour=da.substring(11,13);
+    var min=da.substring(14,16);
+    var sec=da.substring(17,19);
+    var datetime=new Date(year+"-"+month+"-"+day+"T"+hour+":"+min+":"+sec+"Z");
+    console.log(datetime);
+}
