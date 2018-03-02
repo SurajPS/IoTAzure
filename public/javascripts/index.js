@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:S');
+                  console.log('Successfully connected WebSocket:T');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -223,7 +223,7 @@ $(document).ready(function () {
                                                             
                                                             // Add the valueline path.
                                                             svg.append("path")
-                                                            .data(datas[i])
+                                                            .data([datas])
                                                             .attr("class", "line")
                                                             .attr("fill", "none")
                                                             .attr("stroke", "steelblue")
