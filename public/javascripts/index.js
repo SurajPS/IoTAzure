@@ -170,7 +170,7 @@ $(document).ready(function () {
                                            });
                   console.log(datas);
                   
-                  d3.select('#linechart').remove();]
+                  d3.select('#linechart').remove();
                   // set the dimensions and margins of the graph
                   var margin = {top: 20, right: 20, bottom: 30, left: 50},
                   width = 960 - margin.left - margin.right,
