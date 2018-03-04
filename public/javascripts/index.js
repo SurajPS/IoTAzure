@@ -90,7 +90,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:Z');
+                  console.log('Successfully connected WebSocket:A');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -246,7 +246,7 @@ $(document).ready(function () {
                       .duration(200)
                       .style("visibility", "visible");
                       div.html((d.date) + "<br/> Temperature:  "  + d.temp+"<br/>Humidity:  "+d.hum)
-                      .style("left", (event.pageX - 10) + "px")
+                      .style("left", (event.pageX + 10) + "px")
                       .style("top", (event.pageY - 40) + "px")
                       })
                   .on("mouseout", function(d) {
