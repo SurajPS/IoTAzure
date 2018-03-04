@@ -243,10 +243,10 @@ $(document).ready(function () {
                   .on("mouseover", function(d) {
                       div.transition()
                       .duration(200)
-                      .style("opacity", .9)
-                      .style("left", (event.clientX) + "px")
-                      .style("top", (event.clientY - 28) + "px");
-                      div.html((d.date) + "<br/> Temperature:  "  + d.temp+"<br/>Humidity:  "+d.hum);
+                      .style("opacity", .9);
+                      div.html((d.date) + "<br/> Temperature:  "  + d.temp+"<br/>Humidity:  "+d.hum)
+                      .style("left", (d3.event.pageX - 113) + "px")
+                      .style("top", (d3.event.pageY - 190) + "px")
                       })
                   .on("mouseout", function(d) {
                       div.transition()
