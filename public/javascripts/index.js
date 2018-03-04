@@ -79,16 +79,10 @@ var myLineChart = new Chart(ctx, {
                             });
 
 var div = d3.select("body").append("div")
-.attr("class", "tooltip")
+.attr("class", "tooltip").style("position", "absolute")
+.style("z-index", "10")
 .style("opacity", 0);
 
-div.style.position="absolute";
-div.style.width= "100px";
-div.style.height="42px";
-div.style.padding= "2px";
-div.style.font= "12px sans-serif";
-div.style.background= "#DADADA";
-div.style.border= "0px";
 
 $(document).ready(function () {
 
@@ -96,7 +90,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:X');
+                  console.log('Successfully connected WebSocket:Y');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -252,8 +246,8 @@ $(document).ready(function () {
                       .duration(200)
                       .style("opacity", .9);
                       div.html((d.date) + "<br/> Temperature:  "  + d.temp+"<br/>Humidity:  "+d.hum)
-                      .style("left", (d3.event.pageX - 113) + "px")
-                      .style("top", (d3.event.pageY - 190) + "px")
+                      .style("left", (event.pageX - 10) + "px")
+                      .style("top", (event.pageY - 40) + "px")
                       })
                   .on("mouseout", function(d) {
                       div.transition()
