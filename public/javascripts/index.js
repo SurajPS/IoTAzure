@@ -89,7 +89,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:U');
+                  console.log('Successfully connected WebSocket:V');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -219,8 +219,7 @@ $(document).ready(function () {
                                                             .call(d3.axisLeft(y))
                                                             .append("text")
                                                             .attr("fill", "#000")
-                                                            .attr("transform", "rotate(-90)")
-                                                            .attr("y", 6);
+                                                            .attr("transform", "rotate(-90)");
                                                             
                                                             
                                                             // Add the valueline path.
@@ -246,8 +245,8 @@ $(document).ready(function () {
                       .duration(200)
                       .style("opacity", .9);
                       div.html((d.date) + "<br/> Temperature:  "  + d.temp+"<br/>Humidity:  "+d.hum)
-                      .style("left", (d3.event.pageX) + "px")
-                      .style("top", (d3.event.pageY - 28) + "px");
+                      .style("left", (event.clientX) + "px")
+                      .style("top", (event.clientY - 28) + "px");
                       })
                   .on("mouseout", function(d) {
                       div.transition()

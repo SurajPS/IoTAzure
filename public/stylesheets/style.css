@@ -10,6 +10,7 @@ a {
 
 
 div.tooltip {
+    display:block;
     position: absolute;
     text-align: center;
     width: 100px;
