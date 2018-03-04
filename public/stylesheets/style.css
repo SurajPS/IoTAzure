@@ -7,3 +7,17 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 100px;
+    height: 42px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: #F1F1F1;
+    border: 0px;
+    border-radius: 6px;
+    pointer-events: none;
+}

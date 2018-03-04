@@ -78,6 +78,9 @@ var myLineChart = new Chart(ctx, {
                             options: basicOption
                             });
 
+var div = d3.select("body").append("div")
+.attr("class", "tooltip")
+.style("opacity", 0);
 
 
 $(document).ready(function () {
@@ -86,7 +89,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:S');
+                  console.log('Successfully connected WebSocket:T');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -209,8 +212,7 @@ $(document).ready(function () {
                          
                                                             svg.append("g")
                                                             .attr("transform", "translate(0," + height + ")")
-                                                            .call(d3.axisBottom(x)).select(".domain")
-                                                            .remove();
+                  .call(d3.axisBottom(x));
                          
                          // Add the Y Axis
                                                             svg.append("g")
@@ -230,7 +232,29 @@ $(document).ready(function () {
                                                             .attr("stroke-linejoin", "round")
                                                             .attr("stroke-linecap", "round")
                                                             .attr("stroke-width", 1.5)
-                                                            .attr("d", valueline);
+                  .attr("d", valueline);
+                  
+                  
+                  svg.selectAll("dot")
+                  .data(datas)
+                  .enter().append("circle")
+                  .attr("r", 3)
+                  .attr("cx", function(d) { return x(d.date); })
+                  .attr("cy", function(d) { return y(d.temp); })
+                  .on("mouseover", function(d) {
+                      div.transition()
+                      .duration(200)
+                      .style("opacity", .9);
+                      div.html(formatTime(d.date) + "<br/>"  + d.close)
+                      .style("left", (d3.event.pageX) + "px")
+                      .style("top", (d3.event.pageY - 28) + "px");
+                      })
+                  .on("mouseout", function(d) {
+                      div.transition()
+                      .duration(400)
+                      .style("opacity", 0);
+                      });
+
 
             myLineChart.update();
         } catch (err) {
