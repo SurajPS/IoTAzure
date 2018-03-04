@@ -81,7 +81,7 @@ var myLineChart = new Chart(ctx, {
 var div = d3.select("body").append("div")
 .attr("class", "tooltip").style("position", "absolute")
 .style("z-index", "10")
-.style("opacity", 0);
+.style("visibility", "hidden");
 
 
 $(document).ready(function () {
@@ -90,7 +90,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:Y');
+                  console.log('Successfully connected WebSocket:Z');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -244,7 +244,7 @@ $(document).ready(function () {
                   .on("mouseover", function(d) {
                       div.transition()
                       .duration(200)
-                      .style("opacity", .9);
+                      .style("visibility", "visible");
                       div.html((d.date) + "<br/> Temperature:  "  + d.temp+"<br/>Humidity:  "+d.hum)
                       .style("left", (event.pageX - 10) + "px")
                       .style("top", (event.pageY - 40) + "px")
@@ -252,7 +252,7 @@ $(document).ready(function () {
                   .on("mouseout", function(d) {
                       div.transition()
                       .duration(400)
-                      .style("opacity", 0);
+                      .style("visibility", "hidden");
                       });
 
 
