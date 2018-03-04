@@ -86,9 +86,9 @@ div.style.position="absolute";
 div.style.width= "100px";
 div.style.height="42px";
 div.style.padding= "2px";
-div.style.font: "12px sans-serif";
-div.style.background: "#DADADA";
-div.style.border: "0px";
+div.style.font= "12px sans-serif";
+div.style.background= "#DADADA";
+div.style.border= "0px";
 
 $(document).ready(function () {
 
