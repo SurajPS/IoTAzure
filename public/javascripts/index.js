@@ -80,7 +80,7 @@ var myLineChart = new Chart(ctx, {
 
 var div = d3.select("body").append("div")
 .attr("class", "tooltip").style("position", "absolute")
-.style("z-index", "10")
+.style("z-index", "10").style("background","#DADADA")
 .style("visibility", "hidden");
 
 
@@ -90,7 +90,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:A');
+                  console.log('Successfully connected WebSocket:B');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
