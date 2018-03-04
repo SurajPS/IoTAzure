@@ -199,7 +199,7 @@ $(document).ready(function () {
                         "translate(" + margin.left + "," + margin.top + ")");
                   
                   // Get the data
-                                           timeData.forEach(function(d,i){
+                  
                          // Scale the range of the data
                          x.domain(d3.extent(datas, function(d) { return d.date; }));
                          y.domain([0, d3.max(datas, function(d) { return d.temp; })]);
@@ -223,7 +223,7 @@ $(document).ready(function () {
                                                             
                                                             // Add the valueline path.
                                                             svg.append("path")
-                                                            .data([datas[i]])
+                                                            .data([datas])
                                                             .attr("class", "line")
                                                             .attr("fill", "none")
                                                             .attr("stroke", "steelblue")
@@ -231,7 +231,6 @@ $(document).ready(function () {
                                                             .attr("stroke-linecap", "round")
                                                             .attr("stroke-width", 1.5)
                                                             .attr("d", valueline);
-                        });
 
             myLineChart.update();
         } catch (err) {
