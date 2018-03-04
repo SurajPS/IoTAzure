@@ -89,7 +89,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:V');
+                  console.log('Successfully connected WebSocket:W');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -243,10 +243,10 @@ $(document).ready(function () {
                   .on("mouseover", function(d) {
                       div.transition()
                       .duration(200)
-                      .style("opacity", .9);
-                      div.html((d.date) + "<br/> Temperature:  "  + d.temp+"<br/>Humidity:  "+d.hum)
+                      .style("opacity", .9)
                       .style("left", (event.clientX) + "px")
                       .style("top", (event.clientY - 28) + "px");
+                      div.html((d.date) + "<br/> Temperature:  "  + d.temp+"<br/>Humidity:  "+d.hum);
                       })
                   .on("mouseout", function(d) {
                       div.transition()
