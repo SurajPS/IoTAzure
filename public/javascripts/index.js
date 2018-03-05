@@ -90,7 +90,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:G');
+                  console.log('Successfully connected WebSocket:H');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -318,6 +318,6 @@ function dateformat(da){
     var sec=(String(da)).substring(17,19);
     var sdatetime=(year+"-"+month+"-"+day+"T"+hour+":"+min+":"+sec+"Z");
     var datetime= new Date(sdatetime);
-    var dattm= datetime.getDate()+"-"+(datetime.getMonth()+1)+"-"+datetime.getFullYear()+"\n"+datetime.getHours()+":"+datetime.getMinutes;
-    return dattm;
+    //var dattm= datetime.getDate()+"-"+(datetime.getMonth()+1)+"-"+datetime.getFullYear()+"\n"+datetime.getHours()+":"+datetime.getMinutes;
+    return datetime;
 }
