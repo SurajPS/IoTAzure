@@ -90,7 +90,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:F');
+                  console.log('Successfully connected WebSocket:G');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
