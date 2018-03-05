@@ -3,6 +3,7 @@
 
 var sensorname="";
 var previoussensor="";
+var datapresenceT=false,datapresenceH=false;
 var timeData = [],
 allData=[],
 adat={},
@@ -90,7 +91,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:H');
+                  console.log('Successfully connected WebSocket:I');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -242,8 +243,12 @@ function d3lineChart(){
     
     // define the line
     var valueline = d3.line()
-    .x(function(d) { console.log('valueline:'+d);return x(d.date); })
-    .y(function(d) { return y(d.temp); });
+    .x(function(d) { if((d.temp>-100)||(d.hum>=0))return x(d.date); })
+    .y(function(d) { if(d.temp>-100) return y(d.temp); });
+    
+    var valueline2 = d3.line()
+    .x(function(d) { if((d.temp>-100)||(d.hum>=0))return x(d.date); })
+    .y(function(d) { if(d.hum>-100) return y(d.hum); });
     
     // append the svg obgect to the body of the page
     // appends a 'group' element to 'svg'
@@ -259,7 +264,7 @@ function d3lineChart(){
     
     // Scale the range of the data
     x.domain(d3.extent(datas, function(d) { return d.date; }));
-    y.domain([0, d3.max(datas, function(d) { return d.temp; })]);
+    y.domain([0, d3.max(datas, function(d) { return d.hum; })]);
     
     
     // Add the X Axis
@@ -277,15 +282,21 @@ function d3lineChart(){
     
     
     // Add the valueline path.
-    svg.append("path")
+    var linech= svg.append("path")
     .data([datas])
     .attr("class", "line")
-    .attr("fill", "none")
-    .attr("stroke", "steelblue")
+    .attr("fill", "none");
+    linech.attr("stroke", "steelblue")
     .attr("stroke-linejoin", "round")
     .attr("stroke-linecap", "round")
     .attr("stroke-width", 1.5)
     .attr("d", valueline);
+    
+    linech.attr("stroke", "#DF7171")
+    .attr("stroke-linejoin", "round")
+    .attr("stroke-linecap", "round")
+    .attr("stroke-width", 1.5)
+    .attr("d", valueline2);
     
     
     svg.selectAll("dot")
