@@ -90,7 +90,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:C');
+                  console.log('Successfully connected WebSocket:D');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -147,7 +147,6 @@ $(document).ready(function () {
             
             timeData.push(datetime);
             temperatureData.push(obj.temperature);
-            console.log(obj.temperature);
             if (obj.temperature > 30)
                 tempex.push(obj.temperature);
             // only keep no more than 50 points in the line chart
@@ -167,13 +166,22 @@ $(document).ready(function () {
             if (humidityData.length > maxLen) {
                 humidityData.shift();
             }
+                  console.log("TemperatureData");
                   console.log(temperatureData);
+                                    console.log("HumidityData");
+                  console.log(humidityData);
+                                    console.log("TimeData");
+                  console.log(timeData);
                   
                   var datas = temperatureData.map(function(d, i){
                                            return { 'date' : timeData[i], 'temp' : temperatureData[i], 'hum' : humidityData[i] };
                                            });
+                  console.log("All Data");
                   console.log(datas);
                   
+                  
+                  
+                  //Adding the line Chart
                   d3.select('#linechart').remove();
                   // set the dimensions and margins of the graph
                   var margin = {top: 20, right: 20, bottom: 30, left: 50},
