@@ -90,7 +90,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:D');
+                  console.log('Successfully connected WebSocket:E');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -107,8 +107,8 @@ $(document).ready(function () {
                   
                   if(!adat[String(obj.deviceId).toLowerCase()]){
                   var atime=[];atime[0]=(datetime);
-                  var atemp=[];atemp[0]=(obj.temperature);
-                  var ahum=[];ahum[0]=(obj.humidity);
+                  var atemp=[];atemp[0]=(obj.temperature)?obj.temperature:-100;
+                  var ahum=[];ahum[0]=(obj.humidity)?obj.humidity:-1;
                   var vals={};
                   vals['time']= atime;
                   vals['temp']= atemp;
@@ -120,9 +120,9 @@ $(document).ready(function () {
                   else
                   {
                   var val2=adat[String(obj.deviceId).toLowerCase()];console.log(val2);
-                  var vtemp=val2['temp']; vtemp.push(obj.temperature);
+                  var vtemp=val2['temp']; vtemp.push((obj.temperature)?obj.temperature:-100);
                   var vtime=val2['time']; vtime.push(datetime);
-                  var vhum=val2['hum']; vhum.push(obj.humidity);
+                  var vhum=val2['hum']; vhum.push((obj.humidity)?obj.humidity:-1);
                  /* var val2={time:obj.time,
                   temp: obj.temperature,
                   hum: obj.humidity}
@@ -146,7 +146,10 @@ $(document).ready(function () {
              
             
             timeData.push(datetime);
-            temperatureData.push(obj.temperature);
+                  if(obj.temperature)
+                    temperatureData.push(obj.temperature);
+                  else
+                    temperatureData.push(-100);
             if (obj.temperature > 30)
                 tempex.push(obj.temperature);
             // only keep no more than 50 points in the line chart
@@ -159,10 +162,11 @@ $(document).ready(function () {
 
             if (obj.humidity) {
                 humidityData.push(obj.humidity);
-                console.log(obj.humidity);
                 if (obj.humidity > 30)
                     humidex.push(obj.humidity);
             }
+                  else
+                  humidityData.push(-1);
             if (humidityData.length > maxLen) {
                 humidityData.shift();
             }
@@ -289,9 +293,10 @@ function refreshsensor(){
     humidityData.length=0;
     timeData.length=0;
     if(adat[String(sensorname).toLowerCase()]){
-        timeData.push(adat[String(sensorname).toLowerCase()].time);console.log(timeData);
-        temperatureData.push(adat[String(sensorname).toLowerCase()].temp);console.log(temperatureData);
-        humidityData.push(adat[String(sensorname).toLowerCase()].hum);console.log(humidityData);
+        var sensorTime=adat[String(sensorname).toLowerCase()].time;
+        var sensorTemp=adat[String(sensorname).toLowerCase()].temp;
+        var sensorHum=adat[String(sensorname).toLowerCase()].hum;
+        sensorTime.forEach(function(d,i){timeData.push(d);temperatureData.push(sensorTemp[i]);humidityData.push(sensorHum[i]);});
     }
     else
         console.log("Unknown Sensor Name");
