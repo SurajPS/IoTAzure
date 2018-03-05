@@ -91,7 +91,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:I');
+                  console.log('Successfully connected WebSocket:J');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -282,17 +282,21 @@ function d3lineChart(){
     
     
     // Add the valueline path.
-    var linech= svg.append("path")
+    svg.append("path")
     .data([datas])
     .attr("class", "line")
-    .attr("fill", "none");
-    linech.attr("stroke", "steelblue")
+    .attr("fill", "none")
+    .attr("stroke", "steelblue")
     .attr("stroke-linejoin", "round")
     .attr("stroke-linecap", "round")
     .attr("stroke-width", 1.5)
     .attr("d", valueline);
     
-    linech.attr("stroke", "#DF7171")
+    svg.append("path")
+    .data([datas])
+    .attr("class", "line")
+    .attr("fill", "none")
+    .attr("stroke", "#DF7171")
     .attr("stroke-linejoin", "round")
     .attr("stroke-linecap", "round")
     .attr("stroke-width", 1.5)
@@ -305,6 +309,26 @@ function d3lineChart(){
     .attr("r", 3)
     .attr("cx", function(d) { return x(d.date); })
     .attr("cy", function(d) { return y(d.temp); })
+    .on("mouseover", function(d) {
+        div.transition()
+        .duration(200)
+        .style("visibility", "visible");
+        div.html((d.date) + "<br/> Temperature:  "  + d.temp+"<br/>Humidity:  "+d.hum)
+        .style("left", (event.pageX + 10) + "px")
+        .style("top", (event.pageY - 40) + "px")
+        })
+    .on("mouseout", function(d) {
+        div.transition()
+        .duration(400)
+        .style("visibility", "hidden");
+        });
+    
+    svg.selectAll("dot")
+    .data(datas)
+    .enter().append("circle")
+    .attr("r", 3)
+    .attr("cx", function(d) { return x(d.date); })
+    .attr("cy", function(d) { return y(d.hum); })
     .on("mouseover", function(d) {
         div.transition()
         .duration(200)
