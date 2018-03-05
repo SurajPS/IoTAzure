@@ -169,7 +169,7 @@ $(document).ready(function () {
             }
                   console.log(temperatureData);
                   
-                  var datas = timeData.map(function(d, i){
+                  var datas = temperatureData.map(function(d, i){
                                            return { 'date' : timeData[i], 'temp' : temperatureData[i], 'hum' : humidityData[i] };
                                            });
                   console.log(datas);
