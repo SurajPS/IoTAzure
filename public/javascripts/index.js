@@ -90,7 +90,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:E');
+                  console.log('Successfully connected WebSocket:F');
                   console.log(ws);
     }
     ws.onmessage = function (message) {
@@ -169,103 +169,8 @@ $(document).ready(function () {
                   humidityData.push(-1);
             if (humidityData.length > maxLen) {
                 humidityData.shift();
-            }
-                  console.log("TemperatureData");
-                  console.log(temperatureData);
-                                    console.log("HumidityData");
-                  console.log(humidityData);
-                                    console.log("TimeData");
-                  console.log(timeData);
-                  
-                  var datas = temperatureData.map(function(d, i){
-                                           return { 'date' : timeData[i], 'temp' : temperatureData[i], 'hum' : humidityData[i] };
-                                           });
-                  console.log("All Data");
-                  console.log(datas);
-                  
-                  
-                  
-                  //Adding the line Chart
-                  d3.select('#linechart').remove();
-                  // set the dimensions and margins of the graph
-                  var margin = {top: 20, right: 20, bottom: 30, left: 50},
-                  width = 960 - margin.left - margin.right,
-                  height = 500 - margin.top - margin.bottom;
-                  
-                  // parse the date / time
-                  var parseTime = d3.timeFormat("%d %b %H:%M:%S");
-                  
-                  // set the ranges
-                  var x = d3.scaleTime().range([0, width]);
-                  var y = d3.scaleLinear().range([height, 0]);
-                  
-                  // define the line
-                  var valueline = d3.line()
-                  .x(function(d) { console.log('valueline:'+d);return x(d.date); })
-                  .y(function(d) { return y(d.temp); });
-                  
-                  // append the svg obgect to the body of the page
-                  // appends a 'group' element to 'svg'
-                  // moves the 'group' element to the top left margin
-                  var svg = d3.select("#graphdiv").append("svg").attr('id','linechart')
-                  .attr("width", width + margin.left + margin.right)
-                  .attr("height", height + margin.top + margin.bottom)
-                  .append("g")
-                  .attr("transform",
-                        "translate(" + margin.left + "," + margin.top + ")");
-                  
-                  // Get the data
-                  
-                         // Scale the range of the data
-                         x.domain(d3.extent(datas, function(d) { return d.date; }));
-                         y.domain([0, d3.max(datas, function(d) { return d.temp; })]);
-                         
-                         
-                         // Add the X Axis
-                         
-                                                            svg.append("g")
-                                                            .attr("transform", "translate(0," + height + ")")
-                  .call(d3.axisBottom(x));
-                         
-                         // Add the Y Axis
-                                                            svg.append("g")
-                                                            .call(d3.axisLeft(y))
-                                                            .append("text")
-                                                            .attr("fill", "#000")
-                                                            .attr("transform", "rotate(-90)");
-                                                            
-                                                            
-                                                            // Add the valueline path.
-                                                            svg.append("path")
-                                                            .data([datas])
-                                                            .attr("class", "line")
-                                                            .attr("fill", "none")
-                                                            .attr("stroke", "steelblue")
-                                                            .attr("stroke-linejoin", "round")
-                                                            .attr("stroke-linecap", "round")
-                                                            .attr("stroke-width", 1.5)
-                  .attr("d", valueline);
-                  
-                  
-                  svg.selectAll("dot")
-                  .data(datas)
-                  .enter().append("circle")
-                  .attr("r", 3)
-                  .attr("cx", function(d) { return x(d.date); })
-                  .attr("cy", function(d) { return y(d.temp); })
-                  .on("mouseover", function(d) {
-                      div.transition()
-                      .duration(200)
-                      .style("visibility", "visible");
-                      div.html((d.date) + "<br/> Temperature:  "  + d.temp+"<br/>Humidity:  "+d.hum)
-                      .style("left", (event.pageX + 10) + "px")
-                      .style("top", (event.pageY - 40) + "px")
-                      })
-                  .on("mouseout", function(d) {
-                      div.transition()
-                      .duration(400)
-                      .style("visibility", "hidden");
-                      });
+                  }
+                  d3lineChart();
 
 
             myLineChart.update();
@@ -309,7 +214,99 @@ function refreshsensor(){
             humidityData.push(val1.humidity);
         }
     }*/
+    d3lineChart();
     myLineChart.update();
+}
+
+
+function d3lineChart(){
+    var datas = temperatureData.map(function(d, i){
+                                    return { 'date' : timeData[i], 'temp' : temperatureData[i], 'hum' : humidityData[i] };
+                                    });
+    
+    
+    
+    //Adding the line Chart
+    d3.select('#linechart').remove();
+    // set the dimensions and margins of the graph
+    var margin = {top: 20, right: 20, bottom: 30, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+    
+    // parse the date / time
+    var parseTime = d3.timeFormat("%d %b %H:%M:%S");
+    
+    // set the ranges
+    var x = d3.scaleTime().range([0, width]);
+    var y = d3.scaleLinear().range([height, 0]);
+    
+    // define the line
+    var valueline = d3.line()
+    .x(function(d) { console.log('valueline:'+d);return x(d.date); })
+    .y(function(d) { return y(d.temp); });
+    
+    // append the svg obgect to the body of the page
+    // appends a 'group' element to 'svg'
+    // moves the 'group' element to the top left margin
+    var svg = d3.select("#graphdiv").append("svg").attr('id','linechart')
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+    
+    // Get the data
+    
+    // Scale the range of the data
+    x.domain(d3.extent(datas, function(d) { return d.date; }));
+    y.domain([0, d3.max(datas, function(d) { return d.temp; })]);
+    
+    
+    // Add the X Axis
+    
+    svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+    
+    // Add the Y Axis
+    svg.append("g")
+    .call(d3.axisLeft(y))
+    .append("text")
+    .attr("fill", "#000")
+    .attr("transform", "rotate(-90)");
+    
+    
+    // Add the valueline path.
+    svg.append("path")
+    .data([datas])
+    .attr("class", "line")
+    .attr("fill", "none")
+    .attr("stroke", "steelblue")
+    .attr("stroke-linejoin", "round")
+    .attr("stroke-linecap", "round")
+    .attr("stroke-width", 1.5)
+    .attr("d", valueline);
+    
+    
+    svg.selectAll("dot")
+    .data(datas)
+    .enter().append("circle")
+    .attr("r", 3)
+    .attr("cx", function(d) { return x(d.date); })
+    .attr("cy", function(d) { return y(d.temp); })
+    .on("mouseover", function(d) {
+        div.transition()
+        .duration(200)
+        .style("visibility", "visible");
+        div.html((d.date) + "<br/> Temperature:  "  + d.temp+"<br/>Humidity:  "+d.hum)
+        .style("left", (event.pageX + 10) + "px")
+        .style("top", (event.pageY - 40) + "px")
+        })
+    .on("mouseout", function(d) {
+        div.transition()
+        .duration(400)
+        .style("visibility", "hidden");
+        });
 }
 
 function dateformat(da){
@@ -321,5 +318,6 @@ function dateformat(da){
     var sec=(String(da)).substring(17,19);
     var sdatetime=(year+"-"+month+"-"+day+"T"+hour+":"+min+":"+sec+"Z");
     var datetime= new Date(sdatetime);
-    return datetime;
+    var dattm= datetime.getDate()+"-"+(datetime.getMonth()+1)+"-"+datetime.getFullYear()+"\n"+datetime.getHours()+":"+datetime.getMinutes;
+    return dattm;
 }
