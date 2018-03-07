@@ -91,7 +91,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:L');
+                  console.log('Successfully connected WebSocket:M');
                   console.log(ws);
     }
                   
@@ -266,8 +266,8 @@ function d3lineChart(){
     // Scale the range of the data
     x.domain(d3.extent(datas, function(d) { return d.date; }));
     y.domain([0, d3.max(datas, function(d) { return d.hum; })]);
-    console.log(x.domain);
-    console.log(y.domain);
+    console.log(d3.extent(datas, function(d) { return d.date; }));
+    console.log(d3.max(datas, function(d) { return d.hum; }));
     
     // Add the X Axis
     
@@ -315,7 +315,8 @@ function d3lineChart(){
         div.transition()
         .duration(200)
         .style("visibility", "visible");
-        div.html((d.date) + "<br/> Temperature:  "  + d.temp+"<br/>Humidity:  "+d.hum)
+        var dispDate=(String(d.date)).slice(4,-15);
+        div.html(dispDate + "<br/> Temperature:  "  + (Math.round(d.temp*100)/100)+"<br/>Humidity:  "+(Math.round(d.hum*100)/100))
         .style("left", (event.pageX + 10) + "px")
         .style("top", (event.pageY - 40) + "px")
         })
@@ -335,7 +336,8 @@ function d3lineChart(){
         div.transition()
         .duration(200)
         .style("visibility", "visible");
-        div.html((d.date) + "<br/> Temperature:  "  + d.temp+"<br/>Humidity:  "+d.hum)
+        var dispDate=(String(d.date)).slice(4,-15);
+        div.html(dispDate + "<br/> Temperature:  "  + (Math.round(d.temp*100)/100)+"<br/>Humidity:  "+(Math.round(d.hum*100)/100))
         .style("left", (event.pageX + 10) + "px")
         .style("top", (event.pageY - 40) + "px")
         })
