@@ -91,7 +91,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:K');
+                  console.log('Successfully connected WebSocket:L');
                   console.log(ws);
     }
                   
@@ -266,8 +266,8 @@ function d3lineChart(){
     // Scale the range of the data
     x.domain(d3.extent(datas, function(d) { return d.date; }));
     y.domain([0, d3.max(datas, function(d) { return d.hum; })]);
-    console.log(x);
-    console.log(y);
+    console.log(x.domain);
+    console.log(y.domain);
     
     // Add the X Axis
     
