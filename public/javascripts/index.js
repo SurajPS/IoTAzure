@@ -91,7 +91,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:O');
+                  console.log('Successfully connected WebSocket:Q');
                   console.log(ws);
     }
                   d3lineChart();
@@ -264,8 +264,9 @@ function d3lineChart(){
     // Get the data
     
     // Scale the range of the data
+    var ymax=d3.max(datas, function(d) {return d.hum; });
     x.domain(d3.extent(datas, function(d) { return d.date; }));
-    y.domain([0, d3.max(datas, function(d) { if(datas.length<1) return 100; else return d.hum; })]);
+    y.domain([0, !ymax?100:ymax]);
     console.log(d3.extent(datas, function(d) { return d.date; }));
     console.log(d3.max(datas, function(d) { return d.hum; }));
     
@@ -275,12 +276,27 @@ function d3lineChart(){
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x));
     
+    svg.append("text")
+    .attr("transform",
+          "translate(" + (width/2) + " ," +
+          (height + margin.top + 20) + ")")
+    .style("text-anchor", "middle")
+    .text("Time");
+    
     // Add the Y Axis
     svg.append("g")
     .call(d3.axisLeft(y))
     .append("text")
     .attr("fill", "#000")
     .attr("transform", "rotate(-90)");
+    
+    svg.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 0 - margin.left)
+    .attr("x",0 - (height / 2))
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .text("Value");
     
     
     // Add the valueline path.
