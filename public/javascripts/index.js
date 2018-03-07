@@ -91,10 +91,10 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:M');
+                  console.log('Successfully connected WebSocket:N');
                   console.log(ws);
     }
-                  
+                  d3lineChart();
     ws.onmessage = function (message) {
                   
 
@@ -265,7 +265,7 @@ function d3lineChart(){
     
     // Scale the range of the data
     x.domain(d3.extent(datas, function(d) { return d.date; }));
-    y.domain([0, d3.max(datas, function(d) { return d.hum; })]);
+    y.domain([0, d3.max(datas, function(d) { if(datas.length<1) return 100; else return d.hum; })]);
     console.log(d3.extent(datas, function(d) { return d.date; }));
     console.log(d3.max(datas, function(d) { return d.hum; }));
     
@@ -284,6 +284,9 @@ function d3lineChart(){
     
     
     // Add the valueline path.
+    
+    
+    if(document.getElementById("temperaturecheck").checked==true){
     svg.append("path")
     .data([datas])
     .attr("class", "line")
@@ -293,17 +296,6 @@ function d3lineChart(){
     .attr("stroke-linecap", "round")
     .attr("stroke-width", 1.5)
     .attr("d", valueline);
-    
-    svg.append("path")
-    .data([datas])
-    .attr("class", "line")
-    .attr("fill", "none")
-    .attr("stroke", "#DF7171")
-    .attr("stroke-linejoin", "round")
-    .attr("stroke-linecap", "round")
-    .attr("stroke-width", 1.5)
-    .attr("d", valueline2);
-    
     
     svg.selectAll("dot")
     .data(datas)
@@ -326,6 +318,21 @@ function d3lineChart(){
         .style("visibility", "hidden");
         });
     
+    }
+    
+    
+    if(document.getElementById("humiditycheck").checked==true){
+    svg.append("path")
+    .data([datas])
+    .attr("class", "line")
+    .attr("fill", "none")
+    .attr("stroke", "#DF7171")
+    .attr("stroke-linejoin", "round")
+    .attr("stroke-linecap", "round")
+    .attr("stroke-width", 1.5)
+    .attr("d", valueline2);
+
+    
     svg.selectAll("dot")
     .data(datas)
     .enter().append("circle")
@@ -346,6 +353,7 @@ function d3lineChart(){
         .duration(400)
         .style("visibility", "hidden");
         });
+    }
 }
 
 function dateformat(da){
