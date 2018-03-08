@@ -221,6 +221,20 @@ function refreshsensor(){
     myLineChart.update();
 }
 
+function sizechange(val){
+    console.log(val);
+    switch(val){
+        case 0:
+            d3sizes.width=d3sizes.width-4;
+            d3sizes.height=d3sizes.height-3;
+            break;
+        case 1:
+            d3sizes.width=d3sizes.width+4;
+            d3sizes.height=d3sizes.height+3;
+            break;
+    }
+}
+
 
 function sizechange(val){
     switch(val){
