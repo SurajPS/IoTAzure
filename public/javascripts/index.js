@@ -7,6 +7,7 @@ var datapresenceT=false,datapresenceH=false;
 var timeData = [],
 allData=[],
 adat={},
+d3sizes={'width': 712, 'height':534},
 allTempData = [],
 allHumidData=[],
 alltimeData=[],
@@ -91,7 +92,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:R');
+                  console.log('Successfully connected WebSocket:S');
                   console.log(ws);
     }
                   d3lineChart();
@@ -221,17 +222,27 @@ function refreshsensor(){
 }
 
 
+function sizechange(val){
+    switch(vals){
+        case 1:
+            d3sizes.width=400;
+            d3sizes.height=300;
+            break;
+        case 2:
+            d3sizes.width=712;
+            d3sizes.height=534;
+            break;
+        case 3:
+            d3sizes.width=1024;
+            d3sizes.height=768;
+            break;
+    }
+    d3lineChart();
+}
+
+
+
 function d3lineChart(){
-    var sizechoice=["Small","Medium","Large"];
-    var sizes=[{'sizename':"small", 'width': 400, 'height':300},{'sizename':"medium", 'width': 712, 'height':534},{'sizename':"large", 'width': 1024, 'height':768}]
-    var radbut=d3.select("#graphdiv").append("div").attr('id','sizerad').attr('align','center');
-    var inputelem= radbut.data(sizechoice).append("input").enter().append("span");
-    inputelem.attr({
-                   type: "radio",
-                   class: "shape",
-                   name: "mode",
-                   value: function(d, i) {return i;}
-                   });
     var datas = temperatureData.map(function(d, i){
                                     return { 'date' : timeData[i], 'temp' : temperatureData[i], 'hum' : humidityData[i] };
                                     });
@@ -242,8 +253,8 @@ function d3lineChart(){
     d3.select('#linechart').remove();
     // set the dimensions and margins of the graph
     var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = d3sizes.width - margin.left - margin.right,
+    height = d3sizes.height - margin.top - margin.bottom;
     
     // parse the date / time
     var parseTime = d3.timeFormat("%d %b %H:%M:%S");
