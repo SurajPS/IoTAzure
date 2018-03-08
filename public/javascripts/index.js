@@ -225,7 +225,6 @@ function refreshsensor(){
 function sizeredmor(){
     console.log("button release");
     tbutton=false;
-    }
 }
 
 
