@@ -5,6 +5,7 @@ var sensorname="";
 var previoussensor="";
 var datapresenceT=false,datapresenceH=false;
 var timeData = [],
+tbutton=false;
 allData=[],
 adat={},
 d3sizes={'width': 712, 'height':534},
@@ -221,15 +222,9 @@ function refreshsensor(){
     myLineChart.update();
 }
 
-function sizeredmor(val){
-    console.log(val);
-    switch(val){
-        case 0:
-            sizechange(0);
-            break;
-        case 1:
-            sizechange(4);
-            break;
+function sizeredmor(){
+    console.log("button release");
+    tbutton=false;
     }
 }
 
@@ -249,12 +244,16 @@ function sizechange(val){
             d3sizes.height=768;
             break;
         case 0:
+            tbutton=true;
+            while(tbutton){
             d3sizes.width=d3sizes.width-4;
-            d3sizes.height=d3sizes.height-3;
+                d3sizes.height=d3sizes.height-3;}
             break;
         case 4:
+            tbutton=true;
+            while(tbutton){
             d3sizes.width=d3sizes.width+4;
-            d3sizes.height=d3sizes.height+3;
+                d3sizes.height=d3sizes.height+3;}
             break;
     }
     d3lineChart();
