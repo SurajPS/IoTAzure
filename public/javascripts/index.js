@@ -244,23 +244,33 @@ function sizechange(val){
             break;
         case 0:
             tbutton=true;
-            //while(tbutton){
+            while(tbutton){
                 d3sizes.width=(d3sizes.width-4)<400?400:(d3sizes.width-4);
                 d3sizes.height=(d3sizes.height-3)<300?300:(d3sizes.height-3);
-              //  d3lineChart();}
+               d3lineChart();
+                sleep(500);
+            }
             break;
         case 4:
             tbutton=true;
-           // while(tbutton){
+            while(tbutton){
             d3sizes.width=d3sizes.width+4;
                 d3sizes.height=d3sizes.height+3;
-           //     d3lineChart();}
+                d3lineChart();
+                sleep(500);
+            }
             break;
     }
     d3lineChart();
 }
 
-
+function sleep(milliseconds) {
+    var start = new Date().getTime();
+    while(1) {
+        if ((new Date().getTime() - start) > milliseconds)
+            break;
+    }
+}
 
 function d3lineChart(){
     var datas = temperatureData.map(function(d, i){
