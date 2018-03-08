@@ -92,7 +92,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:U');
+                  console.log('Successfully connected WebSocket:V');
                   console.log(ws);
     }
                   d3lineChart();
@@ -221,16 +221,14 @@ function refreshsensor(){
     myLineChart.update();
 }
 
-function sizechange(val){
+function sizeredmor(val){
     console.log(val);
     switch(val){
         case 0:
-            d3sizes.width=d3sizes.width-4;
-            d3sizes.height=d3sizes.height-3;
+            sizechange(0);
             break;
         case 1:
-            d3sizes.width=d3sizes.width+4;
-            d3sizes.height=d3sizes.height+3;
+            sizechange(4);
             break;
     }
 }
