@@ -16,9 +16,11 @@
     <div id="graphdiv">
     <canvas id="myChart" width="400" height="150"></canvas><br>
     <div align="center">
+        <button onclick="sizechange(0)">-</button>
         <button onclick="sizechange(1)">S</button>
                 <button onclick="sizechange(2)">M</button>
-                 <button onclick="sizechange(3)">L</button><br>
+                 <button onclick="sizechange(3)">L</button>
+                 <button onclick="sizechange(4)">+</button><br>
     <input type="checkbox" value="Temperature" id="temperaturecheck" checked onclick="d3lineChart()"/>Temperature
     
     <input type="checkbox" value="Humidity" id="humiditycheck" checked onclick="d3lineChart()"/>Humidity
