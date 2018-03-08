@@ -222,6 +222,16 @@ function refreshsensor(){
 
 
 function d3lineChart(){
+    var sizechoice=["Small","Medium","Large"];
+    var sizes=[{'sizename':"small", 'width': 400, 'height':300},{sizename':"medium", 'width': 712, 'height':534},{sizename':"large", 'width': 1024, 'height':768}]
+    var radbut=d3.select("#graphdiv").append("div").attr('id','sizerad').attr('align','center');
+    var inputelem= radbut.data(sizechoice).append("input").enter().append("span");
+    inputelem.attr({
+                   type: "radio",
+                   class: "shape",
+                   name: "mode",
+                   value: function(d, i) {return i;}
+                   });
     var datas = temperatureData.map(function(d, i){
                                     return { 'date' : timeData[i], 'temp' : temperatureData[i], 'hum' : humidityData[i] };
                                     });
