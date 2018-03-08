@@ -246,13 +246,15 @@ function sizechange(val){
             tbutton=true;
             while(tbutton){
             d3sizes.width=d3sizes.width-4;
-                d3sizes.height=d3sizes.height-3;}
+                d3sizes.height=d3sizes.height-3;
+                d3lineChart();}
             break;
         case 4:
             tbutton=true;
             while(tbutton){
             d3sizes.width=d3sizes.width+4;
-                d3sizes.height=d3sizes.height+3;}
+                d3sizes.height=d3sizes.height+3;
+                d3lineChart();}
             break;
     }
     d3lineChart();
