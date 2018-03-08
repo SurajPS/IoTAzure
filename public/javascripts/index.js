@@ -223,7 +223,7 @@ function refreshsensor(){
 
 
 function sizechange(val){
-    switch(vals){
+    switch(val){
         case 1:
             d3sizes.width=400;
             d3sizes.height=300;
