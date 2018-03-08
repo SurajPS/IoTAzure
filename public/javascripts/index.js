@@ -92,7 +92,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:T');
+                  console.log('Successfully connected WebSocket:U');
                   console.log(ws);
     }
                   d3lineChart();
