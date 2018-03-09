@@ -223,7 +223,10 @@ function refreshsensor(){
 }
 
 
-
+d3.select("minussize").on("mousedown",function(){tbutton=true;});
+d3.select("minussize").on("mouseup",function(){tbutton=false;});
+d3.select("plussize").on("mousedown",function(){tbutton=true;});
+d3.select("plussize").on("mouseup",function(){tbutton=false;});
 
 
 function sizechange(val){
@@ -241,8 +244,7 @@ function sizechange(val){
             d3sizes.height=768;
             break;
         case 0:
-            tbutton=true;
-            while(d3.select("minussize").on("mousedown")){
+            while(tbutton){
                 
                 d3sizes.width=(d3sizes.width-4)<400?400:(d3sizes.width-4);
                 d3sizes.height=(d3sizes.height-3)<300?300:(d3sizes.height-3);
@@ -251,13 +253,12 @@ function sizechange(val){
             }
             break;
         case 4:
-            tbutton=true;
-            //while(tbutton){
+            while(tbutton){
             d3sizes.width=d3sizes.width+4;
                 d3sizes.height=d3sizes.height+3;
                 d3lineChart();
                 sleep(500);
-            //}
+            }
             break;
     }
     d3lineChart();
