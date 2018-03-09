@@ -96,10 +96,10 @@ $(document).ready(function () {
                   console.log('Successfully connected WebSocket:X');
                   console.log(ws);
     }
-                  d3.select("minussize").on("mousedown",function(){tbutton=true;});
-                  d3.select("minussize").on("mouseup",function(){tbutton=false;});
-                  d3.select("plussize").on("mousedown",function(){tbutton=true;});
-                  d3.select("plussize").on("mouseup",function(){tbutton=false;});
+                  d3.select("#minussize").on("mousedown",function(){tbutton=true;});
+                  d3.select("#minussize").on("mouseup",function(){tbutton=false;});
+                  d3.select("#plussize").on("mousedown",function(){tbutton=true;});
+                  d3.select("#plussize").on("mouseup",function(){tbutton=false;});
 
                   d3lineChart();
     ws.onmessage = function (message) {
