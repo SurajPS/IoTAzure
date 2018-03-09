@@ -96,10 +96,10 @@ $(document).ready(function () {
                   console.log('Successfully connected WebSocket:Y');
                   console.log(ws);
     }
-                  d3.select("#minussize").on("mousedown",function(){tbutton=true;});
-                  d3.select("#minussize").on("mouseup",function(){tbutton=false;});
-                  d3.select("#plussize").on("mousedown",function(){tbutton=true;});
-                  d3.select("#plussize").on("mouseup",function(){tbutton=false;});
+                  d3.select("#minussize").on("mousedown",function(){tbutton=true;console.log("minuspress");});
+                  d3.select("#minussize").on("mouseup",function(){tbutton=false;console.log("minusrelease");});
+                  d3.select("#plussize").on("mousedown",function(){tbutton=true;console.log("pluspress");});
+                  d3.select("#plussize").on("mouseup",function(){tbutton=false;console.log("plusrelease");});
 
                   d3lineChart();
     ws.onmessage = function (message) {
@@ -226,12 +226,6 @@ function refreshsensor(){
     d3lineChart();
     myLineChart.update();
 }
-
-
-d3.select("minussize").on("mousedown",function(){tbutton=true;});
-d3.select("minussize").on("mouseup",function(){tbutton=false;});
-d3.select("plussize").on("mousedown",function(){tbutton=true;});
-d3.select("plussize").on("mouseup",function(){tbutton=false;});
 
 
 function sizechange(val){
