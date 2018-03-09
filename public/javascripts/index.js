@@ -323,8 +323,6 @@ function d3lineChart(){
     var ymax=d3.max(datas, function(d) {return d.hum; });
     x.domain(d3.extent(datas, function(d) { return d.date; }));
     y.domain([0, !ymax?100:ymax]);
-    console.log(d3.extent(datas, function(d) { return d.date; }));
-    console.log(d3.max(datas, function(d) { return d.hum; }));
     
     // Add the X Axis
     
