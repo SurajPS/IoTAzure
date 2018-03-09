@@ -96,22 +96,24 @@ $(document).ready(function () {
                   console.log('Successfully connected WebSocket:Z');
                   console.log(ws);
     }
-                  d3.select("#minussize").on("mousedown",function(){tbutton=true;console.log("minuspress");});
-                  d3.select("#minussize").on("mousedown",function(){tbutton=true;console.log("minuspress");});
-                  d3.select("#minussize").on("click",function(){while(tbutton){console.log("minusclick");
-                                             d3sizes.width=(d3sizes.width-4)<400?400:(d3sizes.width-4);
-                                             d3sizes.height=(d3sizes.height-3)<300?300:(d3sizes.height-3);
-                                             d3lineChart();
-                                             sleep(500);
-                                             }});
-                  d3.select("#plussize").on("mousedown",function(){tbutton=true;console.log("pluspress");});
-                  d3.select("#plussize").on("mouseup",function(){tbutton=false;console.log("plusrelease");});
-                  d3.select("#plussize").on("click",function(){while(tbutton){console.log("plusclick");
-                                            d3sizes.width=d3sizes.width+4;
-                                            d3sizes.height=d3sizes.height+3;
+                  d3.select("#minussize").on("mousedown",function(){console.log("minuspress");
+                                            d3.select("#minussize").on("mouseover",function(){
+                                            d3sizes.width=(d3sizes.width-4)<400?400:(d3sizes.width-4);
+                                            d3sizes.height=(d3sizes.height-3)<300?300:(d3sizes.height-3);
                                             d3lineChart();
                                             sleep(500);
-                                            }});
+                                                                       });
+                                             });
+                  d3.select("#minussize").on("mousedown",function(){tbutton=true;console.log("minuspress");});
+                  d3.select("#plussize").on("mousedown",function(){tbutton=true;console.log("pluspress");
+                                            d3.select("#plussize").on("mouseover",function(){
+                                                                      d3sizes.width=d3sizes.width+4;
+                                                                      d3sizes.height=d3sizes.height+3;
+                                                                      d3lineChart();
+                                                                      sleep(500);
+                                                                      });
+                                            });
+                  d3.select("#plussize").on("mouseup",function(){tbutton=false;console.log("plusrelease");});
 
                   d3lineChart();
     ws.onmessage = function (message) {
