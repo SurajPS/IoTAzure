@@ -93,7 +93,7 @@ $(document).ready(function () {
 
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:Y');
+                  console.log('Successfully connected WebSocket:Z');
                   console.log(ws);
     }
                   d3.select("#minussize").on("mousedown",function(){tbutton=true;console.log("minuspress");});
