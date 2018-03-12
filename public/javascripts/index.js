@@ -18,7 +18,7 @@ tempex = [],
 humidex = [];
 var data = {
 labels: timeData,
-datasets: [
+/*datasets: [
            {
            fill: false,
            label: 'Temperature',
@@ -79,7 +79,7 @@ var myLineChart = new Chart(ctx, {
                             type: 'line',
                             data: data,
                             options: basicOption
-                            });
+                            });*/
 
 var div = d3.select("body").append("div")
 .attr("class", "tooltip").style("position", "absolute")
@@ -177,7 +177,7 @@ $(document).ready(function () {
                   d3lineChart();
 
 
-            myLineChart.update();
+           // myLineChart.update();
         } catch (err) {
             console.error(err);
         }
@@ -219,7 +219,7 @@ function refreshsensor(){
         }
     }*/
     d3lineChart();
-    myLineChart.update();
+   // myLineChart.update();
 }
 
 
