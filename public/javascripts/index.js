@@ -96,25 +96,6 @@ $(document).ready(function () {
                   console.log('Successfully connected WebSocket:A');
                   console.log(ws);
     }
-                  d3.select("#minussize").on("mousedown",function(){console.log("minuspress");
-                                            d3.select("#minussize").on("mouseover",function(){
-                                            d3sizes.width=(d3sizes.width-4)<400?400:(d3sizes.width-4);
-                                            d3sizes.height=(d3sizes.height-3)<300?300:(d3sizes.height-3);
-                                            d3lineChart();
-                                            sleep(500);
-                                                                       });
-                                             });
-                  d3.select("#minussize").on("mousedown",function(){tbutton=true;console.log("minuspress");});
-                  d3.select("#plussize").on("mousedown",function(){tbutton=true;console.log("pluspress");
-                                            d3.select("#plussize").on("mouseover",function(){
-                                                                      d3sizes.width=d3sizes.width+4;
-                                                                      d3sizes.height=d3sizes.height+3;
-                                                                      d3lineChart();
-                                                                      sleep(500);
-                                                                      });
-                                            });
-                  d3.select("#plussize").on("mouseup",function(){tbutton=false;console.log("plusrelease");});
-
                   d3lineChart();
     ws.onmessage = function (message) {
                   
@@ -244,6 +225,10 @@ function refreshsensor(){
 
 function sizechange(val){
     switch(val){
+        case 0:
+            d3sizes.width=(d3sizes.width-4)<400?400:(d3sizes.width-4);
+            d3sizes.height=(d3sizes.height-3)<300?300:(d3sizes.height-3);
+            break;
         case 1:
             d3sizes.width=400;
             d3sizes.height=300;
@@ -255,6 +240,10 @@ function sizechange(val){
         case 3:
             d3sizes.width=1024;
             d3sizes.height=768;
+            break;
+        case 4:
+            d3sizes.width=d3sizes.width+4;
+            d3sizes.height=d3sizes.height+3;
             break;
     }
     d3lineChart();
