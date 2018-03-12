@@ -16,9 +16,9 @@ temperatureData = [],
 humidityData = [],
 tempex = [],
 humidex = [];
-var data = {
+/*var data = {
 labels: timeData,
-/*datasets: [
+datasets: [
            {
            fill: false,
            label: 'Temperature',
