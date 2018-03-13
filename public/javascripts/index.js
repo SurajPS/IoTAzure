@@ -26,7 +26,8 @@ var div = d3.select("body").append("div")
 var timeoutId = 0;
 
 d3.select('#minussize').on('mousedown', function() {
-                           console.log($('#minussize').mousedown());
+                           console.log(($('#minussize').mousedown()));
+                           console.log(($('#plussize').mousedown()));
                    timeoutId = setTimeout(sizeDec, 500);
                    }).on('mouseup mouseleave', function() {
                          clearTimeout(timeoutId);
@@ -54,7 +55,7 @@ function sizeDec(){
 $(document).ready(function () {
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:C');
+                  console.log('Successfully connected WebSocket:D');
                   console.log(ws);
     }
                   d3lineChart();
