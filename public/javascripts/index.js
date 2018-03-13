@@ -25,15 +25,19 @@ var div = d3.select("body").append("div")
 
 var timeoutId = 0;
 
+d3.select('#minussize').on('mousedown',function(){
+                           console.log('clickminus');
 $('#minussize').keydown(function() {
                         sizeDec();
                         console.log("minus");
-                   });
+                        });});
 
+d3.select('#plussize').on('mousedown',function(){
+                          console.log('clickplus');
 $('#plussize').keydown( function() {
                        sizeInc();
                        console.log("plus");
-                  });
+                       });});
 
 function sizeInc(){
     d3sizes.width=d3sizes.width+4;
@@ -53,7 +57,7 @@ function sizeDec(){
 $(document).ready(function () {
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:D');
+                  console.log('Successfully connected WebSocket:E');
                   console.log(ws);
     }
                   d3lineChart();
