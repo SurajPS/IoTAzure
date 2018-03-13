@@ -49,13 +49,13 @@
     <!--<canvas id="myChart" width="400" height="150"></canvas><br>-->
     <div align="center">
         <!--<button id="minussize">-</button>-->
-        <button onclick="sizechange(1)">S</button>
-                <button onclick="sizechange(2)">M</button>
-                 <button onclick="sizechange(3)">L</button>
+        <button onclick="sizechange(1,0)">S</button>
+                <button onclick="sizechange(2,0)">M</button>
+                 <button onclick="sizechange(3,0)">L</button>
                <!--  <button id="plussize">+</button><br>-->
                <br>
                
-               <input type="range" min="1" max="400" value="200" class="slider" id="sizeRange">
+               <input type="range" min="1" max="400" value="200" class="slider" id="sizeRange" onchange="sizechange(0,this.value)">
                    <br>
                    <br>
                

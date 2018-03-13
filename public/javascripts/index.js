@@ -41,6 +41,7 @@ function sizeDec(){
 }
 
 
+
 $(document).ready(function () {
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
@@ -160,15 +161,15 @@ function refreshsensor(){
 }
 
 
-function sizechange(val){
+function sizechange(val, val2){
     switch(val){
        /* case 0:
             d3sizes.width=(d3sizes.width-4)<400?400:(d3sizes.width-4);
             d3sizes.height=(d3sizes.height-3)<300?300:(d3sizes.height-3);
             break;*/
         case 1:
-            d3sizes.width=screendim.width/6;
-            d3sizes.height=screendim.height/6;
+            d3sizes.width=screendim.width/4;
+            d3sizes.height=screendim.height/4;
             break;
         case 2:
             d3sizes.width=screendim.width/2;
@@ -177,6 +178,12 @@ function sizechange(val){
         case 3:
             d3sizes.width=screendim.width;
             d3sizes.height=screendim.height;
+            break;
+            
+            
+        case 0:
+            d3sizes.width=screendim.width*val2/400;
+            d3sizes.height=screendim.height*val2/400;
             break;
        /* case 4:
             d3sizes.width=d3sizes.width+4;
