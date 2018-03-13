@@ -26,13 +26,14 @@ var div = d3.select("body").append("div")
 var timeoutId = 0;
 
 d3.select('#minussize').on('mousedown', function() {
-                   timeoutId = setTimeout(sizeInc, 500);
+                           console.log($('#minussize').mousedown());
+                   timeoutId = setTimeout(sizeDec, 500);
                    }).on('mouseup mouseleave', function() {
                          clearTimeout(timeoutId);
                          });
 
 d3.select('#plussize').on('mousedown', function() {
-                   timeoutId = setTimeout(sizeDec, 500);
+                   timeoutId = setTimeout(sizeInc, 500);
                    }).on('mouseup mouseleave', function() {
                          clearTimeout(timeoutId);
                          });
