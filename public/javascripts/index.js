@@ -8,7 +8,7 @@ var timeData = [],
 tbutton=false;
 allData=[],
 adat={},
-d3sizes={'width': 712, 'height':534},
+d3sizes={'width': (screen.width-60)/2, 'height':(screen.width-60)*3/8},
 allTempData = [],
 allHumidData=[],
 alltimeData=[],
@@ -16,7 +16,7 @@ temperatureData = [],
 humidityData = [],
 tempex = [],
 humidex = [];
-
+const screendim={'width': (screen.width-40), 'height':(screen.width-60)*3/4};
 var div = d3.select("body").append("div")
 .attr("class", "tooltip").style("position", "absolute")
 .style("z-index", "10").style("background","#DADADA")
@@ -25,19 +25,6 @@ var div = d3.select("body").append("div")
 
 var timeoutId = 0;
 
-d3.select('#minussize').on('mousedown',function(){
-                           console.log('clickminus');
-$('#minussize').keydown(function() {
-                        sizeDec();
-                        console.log("minus");
-                        });});
-
-d3.select('#plussize').on('mousedown',function(){
-                          console.log('clickplus');
-$('#plussize').keydown( function() {
-                       sizeInc();
-                       console.log("plus");
-                       });});
 
 function sizeInc(){
     d3sizes.width=d3sizes.width+4;
@@ -57,7 +44,7 @@ function sizeDec(){
 $(document).ready(function () {
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:E');
+                  console.log('Successfully connected WebSocket:F');
                   console.log(ws);
     }
                   d3lineChart();
@@ -180,16 +167,16 @@ function sizechange(val){
             d3sizes.height=(d3sizes.height-3)<300?300:(d3sizes.height-3);
             break;*/
         case 1:
-            d3sizes.width=400;
-            d3sizes.height=300;
+            d3sizes.width=screendim.width/6;
+            d3sizes.height=screendim.height/6;
             break;
         case 2:
-            d3sizes.width=712;
-            d3sizes.height=534;
+            d3sizes.width=screendim.width/2;
+            d3sizes.height=screendim.height/2;
             break;
         case 3:
-            d3sizes.width=1024;
-            d3sizes.height=768;
+            d3sizes.width=screendim.width;
+            d3sizes.height=screendim.height;
             break;
        /* case 4:
             d3sizes.width=d3sizes.width+4;

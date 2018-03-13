@@ -7,20 +7,58 @@
     <script src="javascripts/Chart.min.js" type="text/javascript" charset="utf-8"></script>
     <link href="stylesheets/style.css" rel="stylesheet" />
 </head>
+<style>
 
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 20px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #3C2F45;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: #3C2F45;
+    cursor: pointer;
+}
+</style>
 <body>
     <div id="graphicinputfield" align="middle">
     <Label> Sensor Name: </Label><input type="text" id="sensorname"/><br>
     <button id="sensorchangebutton" onclick="refreshsensor()">Change Sensor</button>
-    </div>
+    </div><br>
     <div id="graphdiv">
     <!--<canvas id="myChart" width="400" height="150"></canvas><br>-->
     <div align="center">
-        <button id="minussize">-</button>
+        <!--<button id="minussize">-</button>-->
         <button onclick="sizechange(1)">S</button>
                 <button onclick="sizechange(2)">M</button>
                  <button onclick="sizechange(3)">L</button>
-                 <button id="plussize">+</button><br>
+               <!--  <button id="plussize">+</button><br>-->
+               <br>
+               
+               <input type="range" min="1" max="400" value="200" class="slider" id="sizeRange">
+                   <br>
+                   <br>
+               
     <input type="checkbox" value="Temperature" id="temperaturecheck" checked onclick="d3lineChart()"/>Temperature
     
     <input type="checkbox" value="Humidity" id="humiditycheck" checked onclick="d3lineChart()"/>Humidity
