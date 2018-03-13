@@ -16,70 +16,6 @@ temperatureData = [],
 humidityData = [],
 tempex = [],
 humidex = [];
-/*var data = {
-labels: timeData,
-datasets: [
-           {
-           fill: false,
-           label: 'Temperature',
-           yAxisID: 'Temperature',
-           borderColor: "rgba(255, 200, 0, 1)",
-           pointBoarderColor: "rgba(255, 240, 0, 1)",
-           backgroundColor: "rgba(255, 240, 0, 0.4)",
-           pointHoverBackgroundColor: "rgba(255, 200, 0, 1)",
-           pointHoverBorderColor: "rgba(255, 200, 0, 1)",
-           data: temperatureData
-           },
-           {
-           fill: false,
-           label: 'Humidity',
-           yAxisID: 'Humidity',
-           borderColor: "rgba(0, 240, 240, 1)",
-           pointBoarderColor: "rgba(0, 240, 240, 1)",
-           backgroundColor: "rgba(0, 210, 240, 0.4)",
-           pointHoverBackgroundColor: "rgba(0, 210, 240, 1)",
-           pointHoverBorderColor: "rgba(0, 210, 240, 1)",
-           data: humidityData
-           }
-           ]
-}
-
-//The chart Creation
-
-var basicOption = {
-title: {
-display: true,
-text: 'Temperature & Humidity Real-time Data',
-fontSize: 36
-},
-scales: {
-yAxes: [{
-        id: 'Temperature',
-        type: 'linear',
-        scaleLabel: {
-        labelString: 'Temperature(C)',
-        display: true
-        },
-        position: 'left',
-        }, {
-        id: 'Humidity',
-        type: 'linear',
-        scaleLabel: {
-        labelString: 'Humidity(%)',
-        display: true
-        },
-        position: 'right'
-        }]
-}
-}
-//Get the context of the canvas element we want to select
-var ctx = document.getElementById("myChart").getContext("2d");
-var optionsNoAnimation = { animation: true }
-var myLineChart = new Chart(ctx, {
-                            type: 'line',
-                            data: data,
-                            options: basicOption
-                            });*/
 
 var div = d3.select("body").append("div")
 .attr("class", "tooltip").style("position", "absolute")
@@ -87,13 +23,37 @@ var div = d3.select("body").append("div")
 .style("visibility", "hidden");
 
 
+var timeoutId = 0;
+
+d3.select('#minussize').on('mousedown', function() {
+                   timeoutId = setTimeout(sizeInc, 500);
+                   }).on('mouseup mouseleave', function() {
+                         clearTimeout(timeoutId);
+                         });
+
+d3.select('#plussize').on('mousedown', function() {
+                   timeoutId = setTimeout(sizeDec, 500);
+                   }).on('mouseup mouseleave', function() {
+                         clearTimeout(timeoutId);
+                         });
+
+function sizeInc(){
+    d3sizes.width=d3sizes.width+4;
+    d3sizes.height=d3sizes.height+3;
+    d3lineChart();
+}
+
+function sizeDec(){
+    d3sizes.width=d3sizes.width-4;
+    d3sizes.height=d3sizes.height-3;
+    d3lineChart();
+}
+
+
 $(document).ready(function () {
-
-
-
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:A');
+                  console.log('Successfully connected WebSocket:B');
                   console.log(ws);
     }
                   d3lineChart();
@@ -127,10 +87,6 @@ $(document).ready(function () {
                   var vtemp=val2['temp']; vtemp.push((obj.temperature)?obj.temperature:-100);
                   var vtime=val2['time']; vtime.push(datetime);
                   var vhum=val2['hum']; vhum.push((obj.humidity)?obj.humidity:-1);
-                 /* var val2={time:obj.time,
-                  temp: obj.temperature,
-                  hum: obj.humidity}
-                  vals.push(val2);*/
                   if (timeData.length > 50) {
                   timeData.shift();
                   temperatureData.shift();
@@ -209,26 +165,16 @@ function refreshsensor(){
     }
     else
         console.log("Unknown Sensor Name");
-    /*for(var ind=0;ind<allData.length;ind++){
-        var val1=allData[ind];
-        if(String(val1.deviceId).toLowerCase() == sensorname.toLowerCase())
-        {
-            timeData.push(val1.time);
-            temperatureData.push(val1.temperature);
-            humidityData.push(val1.humidity);
-        }
-    }*/
     d3lineChart();
-   // myLineChart.update();
 }
 
 
 function sizechange(val){
     switch(val){
-        case 0:
+       /* case 0:
             d3sizes.width=(d3sizes.width-4)<400?400:(d3sizes.width-4);
             d3sizes.height=(d3sizes.height-3)<300?300:(d3sizes.height-3);
-            break;
+            break;*/
         case 1:
             d3sizes.width=400;
             d3sizes.height=300;
@@ -241,10 +187,10 @@ function sizechange(val){
             d3sizes.width=1024;
             d3sizes.height=768;
             break;
-        case 4:
+       /* case 4:
             d3sizes.width=d3sizes.width+4;
             d3sizes.height=d3sizes.height+3;
-            break;
+            break;*/
     }
     d3lineChart();
 }
