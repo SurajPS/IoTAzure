@@ -170,17 +170,17 @@ function sizechange(val, val2){
         case 1:
             d3sizes.width=screendim.width/4;
             d3sizes.height=screendim.height/4;
-            document.getElementById("myRange").value = "100";
+            document.getElementById("sizeRange").value = "100";
             break;
         case 2:
             d3sizes.width=screendim.width/2;
             d3sizes.height=screendim.height/2;
-            document.getElementById("myRange").value = "250";
+            document.getElementById("sizeRange").value = "250";
             break;
         case 3:
             d3sizes.width=screendim.width;
             d3sizes.height=screendim.height;
-            document.getElementById("myRange").value = "400";
+            document.getElementById("sizeRange").value = "400";
             break;
             
             
