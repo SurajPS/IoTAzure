@@ -25,30 +25,28 @@ var div = d3.select("body").append("div")
 
 var timeoutId = 0;
 
-d3.select('#minussize').on('mousedown', function() {
-                           console.log(($('#minussize').mousedown()));
-                           console.log(($('#plussize').mousedown()));
-                   timeoutId = setTimeout(sizeDec, 500);
-                   }).on('mouseup mouseleave', function() {
-                         clearTimeout(timeoutId);
-                         });
+$('#minussize').keydown(function() {
+                        sizeDec();
+                        console.log("minus");
+                   });
 
-d3.select('#plussize').on('mousedown', function() {
-                   timeoutId = setTimeout(sizeInc, 500);
-                   }).on('mouseup mouseleave', function() {
-                         clearTimeout(timeoutId);
-                         });
+$('#plussize').keydown( function() {
+                       sizeInc();
+                       console.log("plus");
+                  });
 
 function sizeInc(){
     d3sizes.width=d3sizes.width+4;
     d3sizes.height=d3sizes.height+3;
     d3lineChart();
+    sleep(500);
 }
 
 function sizeDec(){
     d3sizes.width=d3sizes.width-4;
     d3sizes.height=d3sizes.height-3;
     d3lineChart();
+    sleep(500);
 }
 
 
