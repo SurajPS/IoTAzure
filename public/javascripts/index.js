@@ -45,7 +45,7 @@ function sizeDec(){
 $(document).ready(function () {
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:G');
+                  console.log('Successfully connected WebSocket:H');
                   console.log(ws);
     }
                   d3lineChart();
@@ -255,7 +255,12 @@ function d3lineChart(){
     
     svg.append("g")
     .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x));
+    .call(d3.axisBottom(x))
+    .append("text")
+    .attr("fill", "#000")
+     .attr("transform",
+          "translate(" + (width/2) + " ," +
+          (height + margin.top + 20) + ")");
     
     svg.append("text")
     .attr("transform",
