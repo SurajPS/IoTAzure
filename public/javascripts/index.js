@@ -45,7 +45,7 @@ function sizeDec(){
 $(document).ready(function () {
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:H');
+                  console.log('Successfully connected WebSocket:I');
                   console.log(ws);
     }
                   d3lineChart();
@@ -251,6 +251,8 @@ function d3lineChart(){
     x.domain(d3.extent(datas, function(d) { return d.date; }));
     y.domain([0, !ymax?100:ymax]);
     
+
+console.log(d3.extent(datas, function(d) { return d.date; }));
     // Add the X Axis
     
     svg.append("g")
