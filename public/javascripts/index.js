@@ -45,7 +45,7 @@ function sizeDec(){
 $(document).ready(function () {
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:F');
+                  console.log('Successfully connected WebSocket:G');
                   console.log(ws);
     }
                   d3lineChart();
@@ -300,6 +300,7 @@ function d3lineChart(){
     .attr("r", 3)
     .attr("cx", function(d) { return x(d.date); })
     .attr("cy", function(d) { return y(d.temp); })
+    .style("fill", "steelblue")
     .on("mouseover", function(d) {
         div.transition()
         .duration(200)
@@ -336,6 +337,7 @@ function d3lineChart(){
     .attr("r", 3)
     .attr("cx", function(d) { return x(d.date); })
     .attr("cy", function(d) { return y(d.hum); })
+    .style("fill", "#DF7171")
     .on("mouseover", function(d) {
         div.transition()
         .duration(200)
