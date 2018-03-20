@@ -45,7 +45,7 @@ function sizeDec(){
 $(document).ready(function () {
     var ws = new WebSocket('wss://' + location.host);
     ws.onopen = function () {
-                  console.log('Successfully connected WebSocket:I');
+                  console.log('Successfully connected WebSocket:J');
                   console.log(ws);
     }
                   d3lineChart();
@@ -248,7 +248,7 @@ function d3lineChart(){
     
     // Scale the range of the data
     var ymax=d3.max(datas, function(d) {return d.hum; });
-    x.domain(d3.extent(datas, function(d) { return d.date; }));
+    x.domain((datas.length<1)?[new Date(100000000000), new Date(100006800000)]:d3.extent(datas, function(d) { return d.date; }));
     y.domain([0, !ymax?100:ymax]);
     
 
